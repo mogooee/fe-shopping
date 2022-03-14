@@ -1,4 +1,16 @@
 @import "./helpers/variables";
+
+//componenets
 @import "./components/searcher";
+@import "./components/history";
 
 // sass ./styles/sass/main.scss ./styles/css/style.css
+
+button {
+  border: none;
+  background-color: transparent;
+  font-size: 1.2em;
+  &:hover {
+    cursor: pointer;
+  }
+}

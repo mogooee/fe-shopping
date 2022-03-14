@@ -1,3 +1,7 @@
+.search-banner {
+  justify-content: center;
+}
+
 .space-between {
   display: flex;
   justify-content: space-between;
@@ -8,14 +12,14 @@
   align-items: center;
 }
 
-.header {
-  justify-content: center;
-}
-
 .page-title img {
   width: 174px;
   height: 41px;
   margin: 10px 20px 0px 0px;
+}
+
+.search-bar {
+  height: 100%;
 }
 
 .search-form {
@@ -62,15 +66,5 @@
   }
   :focus {
     outline: none;
-  }
-}
-
-button {
-  border: none;
-  background-color: transparent;
-  font-size: 1.2em;
-
-  :hover {
-    cursor: pointer;
   }
 }
