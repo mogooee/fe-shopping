@@ -10,7 +10,7 @@
     />
     <link rel="stylesheet" href="./styles/css/style.css" />
     <title>Document</title>
-    <script defer type="module" src="./views/index.js"></script>
+    <script defer type="module" src="./js/index.js"></script>
   </head>
   <body>
     <header>
@@ -28,9 +28,9 @@
               <button class="search-category__btn"><i class="fas fa-caret-down"></i></button>
             </div>
             <div class="search-keyword">
-              <form>
+              <form class="search-keyword__input">
                 <input
-                  class="search-keyword__input"
+                  class="search-keyword__input-text"
                   type="text"
                   placeholder="찾고 싶은 상품을 검색해보세요!"
                 />
@@ -39,10 +39,12 @@
               <button class="search-keyword__btn"><i class="fas fa-search"></i></button>
             </div>
           </div>
-          <div class="history-keyword">
+          <div class="history-keyword hidden">
             <div class="history-keyword--contents box">
               <p class="history-keyword--contents__title">최근 검색어</p>
-              <div class="history-keyword--contents__keywords"></div>
+              <div class="history-keyword--contents__keywords">
+                <ul class="history-keyword--contents__list"></ul>
+              </div>
             </div>
             <div class="history-keyword--controller space-between box">
               <button>전체삭제</button>

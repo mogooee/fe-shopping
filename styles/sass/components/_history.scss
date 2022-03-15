@@ -3,9 +3,13 @@
   border: 1px solid;
 }
 
+.hidden {
+  display: none;
+}
+
 .history-keyword {
   position: absolute;
-  right: 186px;
+  right: -2px;
   color: #bfbfbf;
 
   &--contents {
@@ -24,6 +28,22 @@
 
     &__keywords {
       border-top: 1px solid;
+      border-color: #bfbfbf;
+      color: #000;
+      ul {
+        display: flex;
+        flex-direction: column-reverse;
+        padding-left: 0;
+      }
+      li {
+        margin: 5px 0px;
+        font-size: 0.8em;
+        &:hover {
+          cursor: pointer;
+          color: $blue;
+          text-decoration: underline;
+        }
+      }
     }
   }
 
