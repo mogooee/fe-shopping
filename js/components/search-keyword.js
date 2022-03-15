@@ -4,28 +4,57 @@ const form = $(".search-keyword__input");
 const input = $(".search-keyword__input-text");
 
 export class SearchKeyword {
-  constructor(keywordStore) {
+  constructor(keywordStore, rendering) {
     this.keywordStore = keywordStore;
+    this.rendering = rendering;
     this.init();
   }
+
   init() {
     this.initEventListeners();
   }
+
   initEventListeners() {
-    //focus되면 최근검색어창 렌더링
-    input.addEventListener("focus", (e) => {
-      $(".history-keyword").classList.remove("hidden");
+    input.addEventListener("focus", () => {
+      this.onFocusSearchForm();
     });
-    input.addEventListener("blur", (e) => {
-      $(".history-keyword").classList.add("hidden");
+
+    input.addEventListener("blur", () => {
+      this.outFocusSearchForm();
     });
-    //keyword를 입력하면
+
     form.addEventListener("submit", (e) => {
       e.preventDefault();
-      if (!input.value.trim().length) return;
-      //keywordStore에 keyword를 저장한다.
-      this.keywordStore.addKeyword(input.value);
-      input.value = "";
+      if (this.isBlank()) return;
+      this.inputKeyword();
     });
+  }
+
+  onFocusSearchForm() {
+    const updatedIndex = this.keywordStore.updateFocusIndex();
+    const keywordElement = this.keywordStore.getFocusKeywordElement(updatedIndex);
+    this.rendering.showHistoryKeyword();
+    this.rendering.onFocusKeyword(keywordElement);
+  }
+
+  outFocusSearchForm() {
+    this.rendering.hiddenHistoryKeyword();
+    this.outFocusKeyword();
+  }
+
+  outFocusKeyword() {
+    const focusKeywordElement = $(".selected-keyword");
+    this.rendering.outFocusKeyword(focusKeywordElement);
+  }
+
+  inputKeyword() {
+    const keyword = input.value;
+    this.keywordStore.saveKeyword(keyword);
+    this.rendering.historyKeyword([keyword]);
+    if (this.keywordStore.isMaxKeywordNum()) this.rendering.removeFirstKeyword();
+  }
+
+  isBlank() {
+    return input.value.trim().length === 0;
   }
 }
