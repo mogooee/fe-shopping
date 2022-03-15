@@ -1,25 +1,11 @@
-.space-between {
-  display: flex;
-  justify-content: space-between;
-}
-
-.vertical-align {
-  display: flex;
-  align-items: center;
-}
-
-.page-title img {
-  width: 174px;
-  height: 41px;
-  margin: 10px 20px 0px 0px;
-}
-
 .search {
   &-banner {
+    @include vertical-align;
     justify-content: center;
   }
 
   &-bar {
+    @include vertical-align;
     height: 100%;
   }
 
@@ -34,6 +20,7 @@
   }
 
   &-category {
+    @include space-between;
     padding: 0px 10px 0px 0px;
     width: 25%;
     z-index: -1;
