@@ -31,10 +31,18 @@ export class HistoryKeyword {
     if (keywordElement.tagName !== "LI") return;
     if (focus === "on") {
       this.rendering.onFocusKeyword(keywordElement);
+      this.changeFocusIndex(keywordElement);
       return;
     }
     this.rendering.outFocusKeyword(keywordElement);
-    //this.outFocusKeyword();
+    this.outFocusKeyword();
+  }
+
+  changeFocusIndex(keywordElement) {
+    const historyKeywordList = this.keywordStore.historyKeyword;
+    historyKeywordList.forEach((keyword, index) => {
+      if (keyword === keywordElement.dataset.value) this.keywordStore.focusIndex = index;
+    });
   }
 
   findFocusKeyword(e) {

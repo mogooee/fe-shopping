@@ -26,11 +26,11 @@ export class Rendering {
   }
 
   onFocusKeyword(keywordElement) {
-    keywordElement.classList.add("selected-keyword");
+    if (keywordElement) keywordElement.classList.add("selected-keyword");
   }
 
   outFocusKeyword(keywordElement) {
-    keywordElement.classList.remove("selected-keyword");
+    if (keywordElement) keywordElement.classList.remove("selected-keyword");
   }
 
   searchForm(keywordElement) {

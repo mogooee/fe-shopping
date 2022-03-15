@@ -7,6 +7,7 @@ const historyKeywordList = $(".history-keyword--contents__list");
 export class KeywordStore {
   constructor() {
     this.historyKeyword = [];
+    this.keywordIndex = -1;
     this.focusIndex;
   }
 
@@ -19,6 +20,7 @@ export class KeywordStore {
     this.addHistoryKeyword(keyword);
     this.saveLocalStorage();
     this.initInputValue();
+    this.increaseKeywordIndex();
   }
 
   addHistoryKeyword(keyword) {
@@ -36,6 +38,10 @@ export class KeywordStore {
 
   initInputValue() {
     inputForm.value = "";
+  }
+
+  increaseKeywordIndex() {
+    this.keywordIndex++;
   }
 
   changeFocusIndex(direction) {

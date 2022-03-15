@@ -44,7 +44,7 @@ export class SearchKeyword {
 
   outFocusKeyword() {
     const focusKeywordElement = $(".selected-keyword");
-    this.rendering.outFocusKeyword(focusKeywordElement);
+    if (focusKeywordElement) this.rendering.outFocusKeyword(focusKeywordElement);
   }
 
   inputKeyword() {
