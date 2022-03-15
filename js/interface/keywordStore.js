@@ -7,12 +7,11 @@ const historyKeywordList = $(".history-keyword--contents__list");
 export class KeywordStore {
   constructor() {
     this.historyKeyword = [];
-    this.keywordIndex = -1;
     this.focusIndex;
   }
 
   updateFocusIndex() {
-    this.focusIndex = this.historyKeyword.length - 1;
+    this.focusIndex = this.historyKeyword.length;
     return this.focusIndex;
   }
 
@@ -20,7 +19,6 @@ export class KeywordStore {
     this.addHistoryKeyword(keyword);
     this.saveLocalStorage();
     this.initInputValue();
-    this.increaseKeywordIndex();
   }
 
   addHistoryKeyword(keyword) {
@@ -40,10 +38,6 @@ export class KeywordStore {
     inputForm.value = "";
   }
 
-  increaseKeywordIndex() {
-    this.keywordIndex++;
-  }
-
   changeFocusIndex(direction) {
     if (direction === "up") this.focusIndex++;
     else this.focusIndex--;
@@ -52,7 +46,10 @@ export class KeywordStore {
   }
 
   checkFocusIndexLimit() {
-    if (this.focusIndex > this.historyKeyword.length - 1) this.focusIndex = this.historyKeyword.length - 1;
+    if (this.focusIndex === this.historyKeyword.length) {
+      this.focusIndex = this.historyKeyword.length;
+      this.initInputValue();
+    }
     if (this.focusIndex < 0) this.focusIndex = 0;
   }
 

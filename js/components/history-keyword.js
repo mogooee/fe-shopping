@@ -28,7 +28,7 @@ export class HistoryKeyword {
 
   renderKeyword(e, focus) {
     const keywordElement = e.target;
-    if (keywordElement.tagName !== "LI") return;
+    if (keywordElement.tagName !== "LI" || keywordElement === undefined) return;
     if (focus === "on") {
       this.rendering.onFocusKeyword(keywordElement);
       this.changeFocusIndex(keywordElement);
@@ -54,12 +54,14 @@ export class HistoryKeyword {
 
   outFocusKeyword() {
     const focusKeywordElement = $(".selected-keyword");
+    if (!focusKeywordElement) return;
     this.rendering.outFocusKeyword(focusKeywordElement);
   }
 
   updateNewFocusKeyword(keyDirection) {
     const changedIndex = this.keywordStore.changeFocusIndex(keyDirection);
     const focuskeywordElement = this.keywordStore.getFocusKeywordElement(changedIndex);
+    if (!focuskeywordElement) return;
     this.rendering.onFocusKeyword(focuskeywordElement);
     this.rendering.searchForm(focuskeywordElement);
   }
