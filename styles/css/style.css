@@ -69,6 +69,12 @@
   display: none;
 }
 
+.selected-keyword {
+  cursor: pointer;
+  color: #4285f4;
+  text-decoration: underline;
+}
+
 .history-keyword {
   position: absolute;
   right: -2px;
@@ -98,11 +104,6 @@
 .history-keyword--contents__keywords li {
   margin: 5px 0px;
   font-size: 0.8em;
-}
-.history-keyword--contents__keywords li:hover {
-  cursor: pointer;
-  color: #4285f4;
-  text-decoration: underline;
 }
 .history-keyword--controller {
   height: 32px;

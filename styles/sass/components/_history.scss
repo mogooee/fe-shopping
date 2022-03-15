@@ -7,6 +7,12 @@
   display: none;
 }
 
+.selected-keyword {
+  cursor: pointer;
+  color: $blue;
+  text-decoration: underline;
+}
+
 .history-keyword {
   position: absolute;
   right: -2px;
@@ -38,11 +44,6 @@
       li {
         margin: 5px 0px;
         font-size: 0.8em;
-        &:hover {
-          cursor: pointer;
-          color: $blue;
-          text-decoration: underline;
-        }
       }
     }
   }
