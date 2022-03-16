@@ -3,10 +3,10 @@ import { $ } from "../utils/utils.js";
 const form = $(".search-keyword__input");
 const input = $(".search-keyword__input-text");
 
-export class SearchKeyword {
-  constructor(keywordStore, rendering) {
+export class SearchBox {
+  constructor(keywordStore, renderer) {
     this.keywordStore = keywordStore;
-    this.rendering = rendering;
+    this.renderer = renderer;
     this.init();
   }
 
@@ -33,21 +33,20 @@ export class SearchKeyword {
   onFocusSearchForm() {
     const updatedIndex = this.keywordStore.updateFocusIndex();
     const keywordElement = this.keywordStore.getFocusKeywordElement(updatedIndex);
-    this.rendering.showHistoryKeyword();
-    if (!keywordElement) return;
-    this.rendering.onFocusKeyword(keywordElement);
+    this.renderer.showHistoryKeyword();
+    keywordElement && this.renderer.onFocusKeyword(keywordElement);
   }
 
   outFocusKeyword() {
     const focusKeywordElement = $(".selected-keyword");
-    if (focusKeywordElement) this.rendering.outFocusKeyword(focusKeywordElement);
+    focusKeywordElement && this.renderer.outFocusKeyword(focusKeywordElement);
   }
 
   inputKeyword() {
     const keyword = input.value;
-    if (this.keywordStore.isMaxKeywordNum()) this.rendering.removeFirstKeyword();
+    this.keywordStore.isMaxKeywordNum() && this.renderer.removeFirstKeyword();
     this.keywordStore.saveKeyword(keyword);
-    this.rendering.historyKeyword([keyword]);
+    this.renderer.historyKeyword([keyword]);
   }
 
   isBlank() {

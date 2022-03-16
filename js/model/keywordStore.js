@@ -22,7 +22,7 @@ export class KeywordStore {
   }
 
   addHistoryKeyword(keyword) {
-    if (this.isMaxKeywordNum()) this.historyKeyword.shift();
+    this.isMaxKeywordNum() && this.historyKeyword.shift();
     this.historyKeyword.push(keyword);
   }
 
@@ -31,7 +31,7 @@ export class KeywordStore {
   }
 
   saveLocalStorage() {
-    localStorage.setItem("search-keyword", JSON.stringify(this.historyKeyword));
+    localStorage.setItem("keyword-history", JSON.stringify(this.historyKeyword));
   }
 
   initInputValue() {
@@ -74,7 +74,7 @@ export class KeywordStore {
 
   delete() {
     this.historyKeyword = [];
-    localStorage.setItem("search-keyword", "");
+    localStorage.setItem("keyword-history", "");
   }
 
   searchForm(keywordElement) {

@@ -6,7 +6,7 @@ const historyKeywordController = $(".history-keyword--controller");
 const historyKeywordOFF = $(".history-keyword__off");
 const historyKeywordList = $(".history-keyword--contents__list");
 
-export class Rendering {
+export class Renderer {
   constructor() {}
 
   showHistoryKeyword(button) {

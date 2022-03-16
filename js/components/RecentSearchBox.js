@@ -3,10 +3,10 @@ import { upKeyCode, downKeyCode } from "../constants.js";
 
 const historyKeywordList = $(".history-keyword--contents__list");
 
-export class HistoryKeyword {
-  constructor(keywordStore, rendering) {
+export class RecentSearchBox {
+  constructor(keywordStore, renderer) {
     this.keywordStore = keywordStore;
-    this.rendering = rendering;
+    this.renderer = renderer;
     this.init();
   }
   init() {
@@ -36,7 +36,7 @@ export class HistoryKeyword {
   onMouseKeyword(keywordElement) {
     const control = "mouse";
     this.keywordStore.changeFocusIndex(control, keywordElement);
-    this.rendering.onFocusKeyword(keywordElement);
+    this.renderer.onFocusKeyword(keywordElement);
   }
 
   updateFocus(e) {
@@ -48,8 +48,7 @@ export class HistoryKeyword {
 
   outFocusKeyword() {
     const focusKeywordElement = $(".selected-keyword");
-    if (!focusKeywordElement) return;
-    this.rendering.outFocusKeyword(focusKeywordElement);
+    focusKeywordElement && this.renderer.outFocusKeyword(focusKeywordElement);
   }
 
   updateFocusKeyword(keyDirection) {
@@ -58,17 +57,17 @@ export class HistoryKeyword {
     const focuskeywordElement = this.keywordStore.getFocusKeywordElement(changedIndex);
     if (!focuskeywordElement) return;
     this.keywordStore.searchForm(focuskeywordElement);
-    this.rendering.onFocusKeyword(focuskeywordElement);
+    this.renderer.onFocusKeyword(focuskeywordElement);
   }
 
   onController(command, button) {
-    if (command === "off") this.rendering.showHistoryOffAlert(button);
-    if (command === "on") this.rendering.showHistoryKeyword(button);
+    if (command === "off") this.renderer.showHistoryOffAlert(button);
+    if (command === "on") this.renderer.showHistoryKeyword(button);
     if (command !== "delete") this.keywordStore.toggleSaveCommand(command, button);
     if (command === "delete") {
       this.keywordStore.delete();
-      this.rendering.historyKeyword();
-      this.rendering.hiddenHistoryKeyword();
+      this.renderer.historyKeyword();
+      this.renderer.hiddenHistoryKeyword();
     }
   }
 }

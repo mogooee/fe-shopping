@@ -1,19 +1,19 @@
-import { SearchKeyword } from "./components/search-keyword.js";
-import { HistoryKeyword } from "./components/history-keyword.js";
-import { HistoryKeywordController } from "./components/history-keyword-controller.js";
-import { KeywordStore } from "./model/keywordStore.js";
-import { Rendering } from "./view/rendering.js";
+import { SearchBox } from "./components/SearchBox.js";
+import { RecentSearchBox } from "./components/RecentSearchBox.js";
+import { RecentSearchBoxController } from "./components/RecentSearchBoxController.js";
+import { KeywordStore } from "./model/KeywordStore.js";
+import { Renderer } from "./view/Renderer.js";
 
 const Main = function () {
-  this.rendering = new Rendering();
+  this.renderer = new Renderer();
   this.keywordStore = new KeywordStore();
-  this.searchKeyword = new SearchKeyword(this.keywordStore, this.rendering);
-  this.historyKeyword = new HistoryKeyword(this.keywordStore, this.rendering);
-  this.historyKeywordController = new HistoryKeywordController(this.historyKeyword);
+  this.searchBox = new SearchBox(this.keywordStore, this.renderer);
+  this.recentSearchBox = new RecentSearchBox(this.keywordStore, this.renderer);
+  this.recentSearchBoxController = new RecentSearchBoxController(this.recentSearchBox);
 };
 
 Main.prototype.loadLocalStorage = function () {
-  const HistoryKeyword = localStorage.getItem("search-keyword");
+  const HistoryKeyword = localStorage.getItem("keyword-history");
   if (HistoryKeyword) {
     const parsedHistoryKeyword = JSON.parse(HistoryKeyword);
     this.loadHistoryKeyword(parsedHistoryKeyword);
@@ -22,7 +22,7 @@ Main.prototype.loadLocalStorage = function () {
 
 Main.prototype.loadHistoryKeyword = function (historyKeyword) {
   this.keywordStore.historyKeyword = historyKeyword;
-  this.rendering.historyKeyword(historyKeyword);
+  this.renderer.historyKeyword(historyKeyword);
 };
 
 Main.prototype.initEventListener = function () {
@@ -30,7 +30,7 @@ Main.prototype.initEventListener = function () {
   const historyController = "history-keyword--controller";
   document.addEventListener("click", (e) => {
     if (e.target.className === searchForm || e.target.parentNode.className === historyController) return;
-    this.rendering.hiddenHistoryKeyword();
+    this.renderer.hiddenHistoryKeyword();
   });
 };
 

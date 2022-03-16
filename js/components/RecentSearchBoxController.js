@@ -1,9 +1,9 @@
 import { $ } from "../utils/utils.js";
 const controller = $(".history-keyword--controller");
 
-export class HistoryKeywordController {
-  constructor(historyKeyword) {
-    this.historyKeyword = historyKeyword;
+export class RecentSearchBoxController {
+  constructor(recentSearchBox) {
+    this.recentSearchBox = recentSearchBox;
     this.init();
   }
   init() {
@@ -14,7 +14,7 @@ export class HistoryKeywordController {
       if (e.target.tagName !== "BUTTON") return;
       const button = e.target;
       const command = button.dataset.command;
-      this.historyKeyword.onController(command, button);
+      this.recentSearchBox.onController(command, button);
     });
   }
 }
