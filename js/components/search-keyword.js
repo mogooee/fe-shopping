@@ -32,8 +32,8 @@ export class SearchKeyword {
 
   onFocusSearchForm() {
     const updatedIndex = this.keywordStore.updateFocusIndex();
-    const keywordElement = this.keywordStore.getFocusKeywordElement(updatedIndex);
     this.rendering.showHistoryKeyword();
+    const keywordElement = this.keywordStore.getFocusKeywordElement(updatedIndex);
     if (!keywordElement) return;
     this.rendering.onFocusKeyword(keywordElement);
   }

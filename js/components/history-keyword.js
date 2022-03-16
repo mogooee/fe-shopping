@@ -14,42 +14,36 @@ export class HistoryKeyword {
   }
   initEventListener() {
     historyKeywordList.addEventListener("mouseover", (e) => {
-      this.renderKeyword(e, "on");
+      this.checkFocus(e, "on");
     });
 
     historyKeywordList.addEventListener("mouseout", (e) => {
-      this.renderKeyword(e, "out");
+      this.checkFocus(e, "out");
     });
 
     document.addEventListener("keyup", (e) => {
-      this.findFocusKeyword(e);
+      this.updateFocus(e);
     });
   }
 
-  renderKeyword(e, focus) {
+  checkFocus(e, focus) {
     const keywordElement = e.target;
     if (keywordElement.tagName !== "LI" || keywordElement === undefined) return;
-    if (focus === "on") {
-      this.rendering.onFocusKeyword(keywordElement);
-      this.changeFocusIndex(keywordElement);
-      return;
-    }
-    this.rendering.outFocusKeyword(keywordElement);
     this.outFocusKeyword();
+    if (focus === "on") this.onMouseKeyword(keywordElement);
   }
 
-  changeFocusIndex(keywordElement) {
-    const historyKeywordList = this.keywordStore.historyKeyword;
-    historyKeywordList.forEach((keyword, index) => {
-      if (keyword === keywordElement.dataset.value) this.keywordStore.focusIndex = index;
-    });
+  onMouseKeyword(keywordElement) {
+    const control = "mouse";
+    this.keywordStore.changeFocusIndex(control, keywordElement);
+    this.rendering.onFocusKeyword(keywordElement);
   }
 
-  findFocusKeyword(e) {
+  updateFocus(e) {
     if (e.keyCode !== upKeyCode && e.keyCode !== downKeyCode) return;
     const keyDirection = e.keyCode === upKeyCode ? "up" : "down";
     this.outFocusKeyword();
-    this.updateNewFocusKeyword(keyDirection);
+    this.updateFocusKeyword(keyDirection);
   }
 
   outFocusKeyword() {
@@ -58,8 +52,9 @@ export class HistoryKeyword {
     this.rendering.outFocusKeyword(focusKeywordElement);
   }
 
-  updateNewFocusKeyword(keyDirection) {
-    const changedIndex = this.keywordStore.changeFocusIndex(keyDirection);
+  updateFocusKeyword(keyDirection) {
+    const control = "keyboard";
+    const changedIndex = this.keywordStore.changeFocusIndex(control, keyDirection);
     const focuskeywordElement = this.keywordStore.getFocusKeywordElement(changedIndex);
     if (!focuskeywordElement) return;
     this.rendering.onFocusKeyword(focuskeywordElement);

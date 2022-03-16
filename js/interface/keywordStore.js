@@ -38,7 +38,22 @@ export class KeywordStore {
     inputForm.value = "";
   }
 
-  changeFocusIndex(direction) {
+  changeFocusIndex(event, base) {
+    switch (event) {
+      case "mouse":
+        return this.findFocusIndex(base);
+      case "keyboard":
+        return this.calcFocusIndex(base);
+    }
+  }
+
+  findFocusIndex(keywordElement) {
+    this.historyKeyword.forEach((keyword, index) => {
+      if (keyword === keywordElement.dataset.value) this.focusIndex = index;
+    });
+  }
+
+  calcFocusIndex(direction) {
     if (direction === "up") this.focusIndex++;
     else this.focusIndex--;
     this.checkFocusIndexLimit();
