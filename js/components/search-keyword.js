@@ -20,7 +20,7 @@ export class SearchKeyword {
     });
 
     input.addEventListener("blur", () => {
-      this.outFocusSearchForm();
+      this.outFocusKeyword();
     });
 
     form.addEventListener("submit", (e) => {
@@ -36,11 +36,6 @@ export class SearchKeyword {
     this.rendering.showHistoryKeyword();
     if (!keywordElement) return;
     this.rendering.onFocusKeyword(keywordElement);
-  }
-
-  outFocusSearchForm() {
-    this.rendering.hiddenHistoryKeyword();
-    this.outFocusKeyword();
   }
 
   outFocusKeyword() {

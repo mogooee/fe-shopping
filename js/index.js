@@ -25,5 +25,15 @@ Main.prototype.loadHistoryKeyword = function (historyKeyword) {
   this.rendering.historyKeyword(historyKeyword);
 };
 
+Main.prototype.initEventListener = function () {
+  const searchForm = "search-keyword__input-text";
+  const historyController = "history-keyword--controller";
+  document.addEventListener("click", (e) => {
+    if (e.target.className === searchForm || e.target.parentNode.className === historyController) return;
+    this.rendering.hiddenHistoryKeyword();
+  });
+};
+
 const main = new Main();
 main.loadLocalStorage();
+main.initEventListener();

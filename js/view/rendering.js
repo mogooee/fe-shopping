@@ -24,7 +24,7 @@ export class Rendering {
   }
 
   hiddenHistoryKeyword() {
-    //historyKeyword.classList.add("hidden");
+    historyKeyword.classList.add("hidden");
   }
 
   historyKeyword(keyword) {

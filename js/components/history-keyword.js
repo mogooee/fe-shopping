@@ -68,6 +68,7 @@ export class HistoryKeyword {
     if (command === "delete") {
       this.keywordStore.delete();
       this.rendering.historyKeyword();
+      this.rendering.hiddenHistoryKeyword();
     }
   }
 }
