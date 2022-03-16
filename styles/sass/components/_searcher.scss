@@ -1,0 +1,60 @@
+.search {
+  &-banner {
+    @include vertical-align;
+    justify-content: center;
+  }
+
+  &-bar {
+    @include vertical-align;
+    height: 100%;
+  }
+
+  &-form {
+    padding: 0px 10px;
+    width: 484px;
+    height: 37px;
+    border: 2px solid {
+      color: $blue;
+    }
+    position: relative;
+  }
+
+  &-category {
+    @include space-between;
+    padding: 0px 10px 0px 0px;
+    width: 25%;
+    z-index: -1;
+    border-right: 1px solid {
+      color: #ddd;
+    }
+
+    p {
+      font-size: 13px;
+    }
+
+    &__btn {
+      color: #bfbfbf;
+    }
+  }
+
+  &-keyword {
+    display: flex;
+    &__input-text {
+      width: 300px;
+      border: none;
+      margin-left: 10px;
+    }
+
+    &__voice {
+      color: #787879;
+    }
+
+    &__btn {
+      color: $blue;
+      margin-left: 10px;
+    }
+    :focus {
+      outline: none;
+    }
+  }
+}

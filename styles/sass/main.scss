@@ -1,0 +1,15 @@
+//base
+@import "./base/reset";
+
+//abstracts
+@import "./abstracts/variables";
+@import "./abstracts/mixins";
+
+//componenets
+@import "./components/searcher";
+@import "./components/history";
+
+//layout
+@import "./layout/header";
+
+// sass ./styles/sass/main.scss ./styles/css/style.css
