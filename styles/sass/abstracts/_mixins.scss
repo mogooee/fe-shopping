@@ -1,6 +1,7 @@
 @mixin box {
   padding: 0px 20px;
   border: 1px solid;
+  background-color: #fff;
 }
 
 @mixin space-between {
@@ -10,5 +11,11 @@
 
 @mixin vertical-align {
   display: flex;
+  align-items: center;
+}
+
+@mixin center {
+  display: flex;
+  justify-content: center;
   align-items: center;
 }

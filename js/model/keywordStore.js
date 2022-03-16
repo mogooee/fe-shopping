@@ -27,7 +27,6 @@ export class KeywordStore {
   }
 
   isMaxKeywordNum() {
-    console.log(this.historyKeyword.length, maxKeywordNum);
     return this.historyKeyword.length === maxKeywordNum;
   }
 
@@ -71,5 +70,19 @@ export class KeywordStore {
 
   getFocusKeywordElement(index) {
     return historyKeywordList.querySelectorAll("li")[index];
+  }
+
+  delete() {
+    this.historyKeyword = [];
+    localStorage.setItem("search-keyword", "");
+  }
+
+  searchForm(keywordElement) {
+    const searchForm = $(".search-keyword__input-text");
+    searchForm.value = keywordElement.dataset.value;
+  }
+
+  toggleSaveCommand(command, button) {
+    button.dataset.command = command === "on" ? "off" : "on";
   }
 }

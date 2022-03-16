@@ -57,7 +57,17 @@ export class HistoryKeyword {
     const changedIndex = this.keywordStore.changeFocusIndex(control, keyDirection);
     const focuskeywordElement = this.keywordStore.getFocusKeywordElement(changedIndex);
     if (!focuskeywordElement) return;
+    this.keywordStore.searchForm(focuskeywordElement);
     this.rendering.onFocusKeyword(focuskeywordElement);
-    this.rendering.searchForm(focuskeywordElement);
+  }
+
+  onController(command, button) {
+    if (command === "off") this.rendering.showHistoryOffAlert(button);
+    if (command === "on") this.rendering.showHistoryKeyword(button);
+    if (command !== "delete") this.keywordStore.toggleSaveCommand(command, button);
+    if (command === "delete") {
+      this.keywordStore.delete();
+      this.rendering.historyKeyword();
+    }
   }
 }

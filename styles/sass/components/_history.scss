@@ -1,5 +1,6 @@
 .history-keyword {
   position: absolute;
+  width: 394px;
   right: -2px;
   color: #bfbfbf;
 
@@ -22,6 +23,7 @@
       border-top: 1px solid;
       border-color: #bfbfbf;
       color: #000;
+
       ul {
         display: flex;
         flex-direction: column-reverse;
@@ -43,6 +45,19 @@
     button {
       font-size: 0.75em;
       color: #888;
+    }
+  }
+
+  &__off {
+    @include box;
+    @include center;
+    height: 55px;
+    padding: 15px 0px;
+    border-bottom: none;
+    p {
+      font-size: 0.8em;
+      color: #717171;
+      font-weight: 700;
     }
   }
 }

@@ -65,12 +65,14 @@ li {
 
 .history-keyword {
   position: absolute;
+  width: 394px;
   right: -2px;
   color: #bfbfbf;
 }
 .history-keyword--contents {
   padding: 0px 20px;
   border: 1px solid;
+  background-color: #fff;
   width: 352px;
   border-bottom: 0px;
   height: 300px;
@@ -98,6 +100,7 @@ li {
 .history-keyword--controller {
   padding: 0px 20px;
   border: 1px solid;
+  background-color: #fff;
   display: flex;
   justify-content: space-between;
   height: 32px;
@@ -107,6 +110,22 @@ li {
 .history-keyword--controller button {
   font-size: 0.75em;
   color: #888;
+}
+.history-keyword__off {
+  padding: 0px 20px;
+  border: 1px solid;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 55px;
+  padding: 15px 0px;
+  border-bottom: none;
+}
+.history-keyword__off p {
+  font-size: 0.8em;
+  color: #717171;
+  font-weight: 700;
 }
 
 .hidden {
