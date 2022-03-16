@@ -7,7 +7,7 @@ const historyKeywordList = $(".history-keyword--contents__list");
 export class KeywordStore {
   constructor() {
     this.historyKeyword = [];
-    this.focusIndex;
+    this.focusIndex = 0;
   }
 
   updateFocusIndex() {
@@ -27,7 +27,8 @@ export class KeywordStore {
   }
 
   isMaxKeywordNum() {
-    return this.historyKeyword.length > maxKeywordNum;
+    console.log(this.historyKeyword.length, maxKeywordNum);
+    return this.historyKeyword.length === maxKeywordNum;
   }
 
   saveLocalStorage() {
@@ -61,6 +62,7 @@ export class KeywordStore {
   }
 
   checkFocusIndexLimit() {
+    console.log(this.focusIndex, this.historyKeyword.length);
     if (this.focusIndex === this.historyKeyword.length) {
       this.focusIndex = this.historyKeyword.length;
       this.initInputValue();
