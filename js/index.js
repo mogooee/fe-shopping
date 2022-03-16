@@ -1,7 +1,7 @@
 import { SearchKeyword } from "./components/search-keyword.js";
 import { HistoryKeyword } from "./components/history-keyword.js";
-import { KeywordStore } from "./interface/keywordStore.js";
-import { Rendering } from "./interface/rendering.js";
+import { KeywordStore } from "./model/keywordStore.js";
+import { Rendering } from "./view/rendering.js";
 
 const Main = function () {
   this.rendering = new Rendering();

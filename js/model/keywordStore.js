@@ -62,8 +62,7 @@ export class KeywordStore {
   }
 
   checkFocusIndexLimit() {
-    console.log(this.focusIndex, this.historyKeyword.length);
-    if (this.focusIndex === this.historyKeyword.length) {
+    if (this.focusIndex > this.historyKeyword.length) {
       this.focusIndex = this.historyKeyword.length;
       this.initInputValue();
     }
