@@ -13,23 +13,24 @@ const Main = function () {
 };
 
 Main.prototype.loadLocalStorage = function () {
-  const HistoryKeyword = localStorage.getItem("keyword-history");
-  if (HistoryKeyword) {
-    const parsedHistoryKeyword = JSON.parse(HistoryKeyword);
-    this.loadHistoryKeyword(parsedHistoryKeyword);
+  const keywordHistory = localStorage.getItem("keyword-history");
+  if (keywordHistory) {
+    const parsedkeywordHistory = JSON.parse(keywordHistory);
+    this.loadkeywordHistory(parsedkeywordHistory);
   }
 };
 
-Main.prototype.loadHistoryKeyword = function (historyKeyword) {
-  this.keywordStore.historyKeyword = historyKeyword;
-  this.renderer.inputRecentKeyword(historyKeyword);
+Main.prototype.loadkeywordHistory = function (keywordHistory) {
+  this.keywordStore.recentKeywordArr = keywordHistory;
+  this.renderer.inputRecentKeyword(keywordHistory);
 };
 
 Main.prototype.initEventListener = function () {
-  const searchForm = "search-box__input-text";
-  const historyController = "recent-search-box--controller";
+  const searchBox = "search-box__input-text";
+  const RecentSearchBoxController = "recent-search-box--controller";
   document.addEventListener("click", (e) => {
-    if (e.target.className === searchForm || e.target.parentNode.className === historyController) return;
+    if (e.target.className === searchBox || e.target.parentNode.className === RecentSearchBoxController)
+      return;
     this.renderer.hideRecentSearchBox();
   });
 };

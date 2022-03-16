@@ -1,46 +1,46 @@
 import { $ } from "../utils/utils.js";
 
-const historyKeyword = $(".recent-search-box");
-const historyKeywordContents = $(".recent-search-box--contents");
-const historyKeywordController = $(".recent-search-box--controller");
-const historyKeywordOFF = $(".recent-search-box__off");
-const historyKeywordList = $(".recent-search-box--contents__list");
+const recentKeyword = $(".recent-search-box");
+const recentKeywordContents = $(".recent-search-box--contents");
+const recentKeywordController = $(".recent-search-box--controller");
+const recentKeywordOFF = $(".recent-search-box__off");
+const recentKeywordList = $(".recent-search-box--contents__list");
 
 export class Renderer {
   constructor() {}
 
   showRecentSearchBox(button) {
-    historyKeywordOFF.classList.add("hidden");
-    historyKeyword.classList.remove("hidden");
-    historyKeywordController.classList.remove("hidden");
-    historyKeywordContents.classList.remove("hidden");
+    recentKeywordOFF.classList.add("hidden");
+    recentKeyword.classList.remove("hidden");
+    recentKeywordController.classList.remove("hidden");
+    recentKeywordContents.classList.remove("hidden");
     if (button) button.innerHTML = "최근검색어끄기";
   }
 
   showRecentSearchOffAlert(button) {
-    historyKeywordContents.classList.add("hidden");
-    historyKeyword.classList.remove("hidden");
-    historyKeywordOFF.classList.remove("hidden");
+    recentKeywordContents.classList.add("hidden");
+    recentKeyword.classList.remove("hidden");
+    recentKeywordOFF.classList.remove("hidden");
     if (button) button.innerHTML = "최근검색어켜기";
   }
 
   hideRecentSearchBox() {
-    historyKeyword.classList.add("hidden");
+    recentKeyword.classList.add("hidden");
   }
 
   inputRecentKeyword(keyword) {
     const position = "beforeend";
     if (!keyword) {
-      historyKeywordList.innerHTML = "";
+      recentKeywordList.innerHTML = "";
       return;
     }
     const inputKeyword = keyword.map((keyword) => `<li data-value="${keyword}">${keyword}</li>`).join("");
-    historyKeywordList.insertAdjacentHTML(position, inputKeyword);
+    recentKeywordList.insertAdjacentHTML(position, inputKeyword);
   }
 
   removeLastRecentKeyword() {
     const firstKeyword = $(".recent-search-box--contents__list li");
-    historyKeywordList.removeChild(firstKeyword);
+    recentKeywordList.removeChild(firstKeyword);
   }
 
   onFocusKeyword(keywordElement) {

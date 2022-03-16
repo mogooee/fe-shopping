@@ -29,7 +29,7 @@ export class SearchBox {
 
     form.addEventListener("submit", (e) => {
       e.preventDefault();
-      if (this.isBlank() || this.keywordStore.recentKeywordSaveFlag === 0) {
+      if (this.isBlank() || !this.keywordStore.recentKeywordSaveFlag) {
         this.keywordStore.initInputForm();
         return;
       }
@@ -51,6 +51,10 @@ export class SearchBox {
 
   inputKeyword() {
     const keyword = input.value;
+    if (this.keywordStore.isExistingRecentKeyword(keyword)) {
+      this.keywordStore.initInputForm();
+      return;
+    }
     this.keywordStore.isMaxSavedKeywordNum() && this.renderer.removeLastRecentKeyword();
     this.keywordStore.saveKeyword(keyword);
     this.renderer.inputRecentKeyword([keyword]);

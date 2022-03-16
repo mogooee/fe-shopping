@@ -6,33 +6,37 @@ const recentKeywordList = $(".recent-search-box--contents__list");
 
 export class KeywordStore {
   constructor() {
-    this.historyKeyword = [];
+    this.recentKeywordArr = [];
     this.focusIndex = 0;
     this.recentKeywordSaveFlag = 1;
   }
 
   updateFocusIndex() {
-    this.focusIndex = this.historyKeyword.length;
+    this.focusIndex = this.recentKeywordArr.length;
     return this.focusIndex;
   }
 
+  isExistingRecentKeyword(keyword) {
+    return this.recentKeywordArr.includes(keyword);
+  }
+
   saveKeyword(keyword) {
-    this.addHistoryKeyword(keyword);
+    this.addRecentKeyword(keyword);
     this.saveLocalStorage();
     this.initInputForm();
   }
 
-  addHistoryKeyword(keyword) {
-    this.isMaxSavedKeywordNum() && this.historyKeyword.shift();
-    this.historyKeyword.push(keyword);
+  addRecentKeyword(keyword) {
+    this.isMaxSavedKeywordNum() && this.recentKeywordArr.shift();
+    this.recentKeywordArr.push(keyword);
   }
 
   isMaxSavedKeywordNum() {
-    return this.historyKeyword.length === maxKeywordNum;
+    return this.recentKeywordArr.length === maxKeywordNum;
   }
 
   saveLocalStorage() {
-    localStorage.setItem("keyword-history", JSON.stringify(this.historyKeyword));
+    localStorage.setItem("keyword-history", JSON.stringify(this.recentKeywordArr));
   }
 
   initInputForm() {
@@ -49,7 +53,7 @@ export class KeywordStore {
   }
 
   findFocusIndex(keywordElement) {
-    this.historyKeyword.forEach((keyword, index) => {
+    this.recentKeywordArr.forEach((keyword, index) => {
       if (keyword === keywordElement.dataset.value) this.focusIndex = index;
     });
   }
@@ -62,11 +66,11 @@ export class KeywordStore {
   }
 
   checkFocusIndexLimit() {
-    if (this.focusIndex >= this.historyKeyword.length) {
-      this.focusIndex = this.historyKeyword.length;
+    if (this.focusIndex >= this.recentKeywordArr.length) {
+      this.focusIndex = this.recentKeywordArr.length;
       this.initInputForm();
     }
-    if (this.focusIndex < 0) this.focusIndex = this.historyKeyword.length - 1;
+    if (this.focusIndex < 0) this.focusIndex = this.recentKeywordArr.length - 1;
   }
 
   getFocusedKeywordElement(index) {
@@ -74,7 +78,7 @@ export class KeywordStore {
   }
 
   initRecentKeyword() {
-    this.historyKeyword = [];
+    this.recentKeywordArr = [];
     localStorage.setItem("keyword-history", "");
   }
 
