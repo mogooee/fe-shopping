@@ -62,11 +62,11 @@ export class KeywordStore {
   }
 
   checkFocusIndexLimit() {
-    if (this.focusIndex > this.historyKeyword.length) {
+    if (this.focusIndex >= this.historyKeyword.length) {
       this.focusIndex = this.historyKeyword.length;
       this.initInputValue();
     }
-    if (this.focusIndex < 0) this.focusIndex = 0;
+    if (this.focusIndex < 0) this.focusIndex = this.historyKeyword.length - 1;
   }
 
   getFocusKeywordElement(index) {
