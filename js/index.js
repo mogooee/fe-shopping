@@ -2,7 +2,7 @@ import { SearchBox } from "./components/SearchBox.js";
 import { RecentSearchBox } from "./components/RecentSearchBox.js";
 import { RecentSearchBoxController } from "./components/RecentSearchBoxController.js";
 import { Renderer } from "./view/Renderer.js";
-import { KeywordStore } from "./model/KeywordStore.js";
+import { KeywordStore } from "./model/keywordStore.js";
 
 const Main = function () {
   this.renderer = new Renderer();
