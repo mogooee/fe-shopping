@@ -84,5 +84,6 @@ export class KeywordStore {
 
   toggleKeywordSaveCommand(command, button) {
     button.dataset.command = command === "on" ? "off" : "on";
+    return;
   }
 }
