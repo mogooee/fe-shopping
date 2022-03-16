@@ -1,15 +1,15 @@
 import { $ } from "../utils/utils.js";
 
-const historyKeyword = $(".history-keyword");
-const historyKeywordContents = $(".history-keyword--contents");
-const historyKeywordController = $(".history-keyword--controller");
-const historyKeywordOFF = $(".history-keyword__off");
-const historyKeywordList = $(".history-keyword--contents__list");
+const historyKeyword = $(".recent-search-box");
+const historyKeywordContents = $(".recent-search-box--contents");
+const historyKeywordController = $(".recent-search-box--controller");
+const historyKeywordOFF = $(".recent-search-box__off");
+const historyKeywordList = $(".recent-search-box--contents__list");
 
 export class Renderer {
   constructor() {}
 
-  showHistoryKeyword(button) {
+  showRecentSearchBox(button) {
     historyKeywordOFF.classList.add("hidden");
     historyKeyword.classList.remove("hidden");
     historyKeywordController.classList.remove("hidden");
@@ -17,17 +17,18 @@ export class Renderer {
     if (button) button.innerHTML = "최근검색어끄기";
   }
 
-  showHistoryOffAlert(button) {
+  showRecentSearchOffAlert(button) {
     historyKeywordContents.classList.add("hidden");
+    historyKeyword.classList.remove("hidden");
     historyKeywordOFF.classList.remove("hidden");
     if (button) button.innerHTML = "최근검색어켜기";
   }
 
-  hiddenHistoryKeyword() {
+  hideRecentSearchBox() {
     historyKeyword.classList.add("hidden");
   }
 
-  historyKeyword(keyword) {
+  inputRecentKeyword(keyword) {
     const position = "beforeend";
     if (!keyword) {
       historyKeywordList.innerHTML = "";
@@ -37,8 +38,8 @@ export class Renderer {
     historyKeywordList.insertAdjacentHTML(position, inputKeyword);
   }
 
-  removeFirstKeyword() {
-    const firstKeyword = $(".history-keyword--contents__list li");
+  removeLastRecentKeyword() {
+    const firstKeyword = $(".recent-search-box--contents__list li");
     historyKeywordList.removeChild(firstKeyword);
   }
 
@@ -48,5 +49,10 @@ export class Renderer {
 
   outFocusKeyword(keywordElement) {
     keywordElement.classList.remove("selected-keyword");
+  }
+
+  updateSearchBox(keywordElement) {
+    const searchForm = $(".search-box__input-text");
+    searchForm.value = keywordElement.dataset.value;
   }
 }

@@ -1,5 +1,5 @@
 import { $ } from "../utils/utils.js";
-const controller = $(".history-keyword--controller");
+const controller = $(".recent-search-box--controller");
 
 export class RecentSearchBoxController {
   constructor(recentSearchBox) {

@@ -1,13 +1,14 @@
 import { maxKeywordNum } from "../constants.js";
 import { $ } from "../utils/utils.js";
 
-const inputForm = $(".search-keyword__input-text");
-const historyKeywordList = $(".history-keyword--contents__list");
+const inputForm = $(".search-box__input-text");
+const recentKeywordList = $(".recent-search-box--contents__list");
 
 export class KeywordStore {
   constructor() {
     this.historyKeyword = [];
     this.focusIndex = 0;
+    this.recentKeywordSaveFlag = 1;
   }
 
   updateFocusIndex() {
@@ -18,15 +19,15 @@ export class KeywordStore {
   saveKeyword(keyword) {
     this.addHistoryKeyword(keyword);
     this.saveLocalStorage();
-    this.initInputValue();
+    this.initInputForm();
   }
 
   addHistoryKeyword(keyword) {
-    this.isMaxKeywordNum() && this.historyKeyword.shift();
+    this.isMaxSavedKeywordNum() && this.historyKeyword.shift();
     this.historyKeyword.push(keyword);
   }
 
-  isMaxKeywordNum() {
+  isMaxSavedKeywordNum() {
     return this.historyKeyword.length === maxKeywordNum;
   }
 
@@ -34,7 +35,7 @@ export class KeywordStore {
     localStorage.setItem("keyword-history", JSON.stringify(this.historyKeyword));
   }
 
-  initInputValue() {
+  initInputForm() {
     inputForm.value = "";
   }
 
@@ -63,26 +64,21 @@ export class KeywordStore {
   checkFocusIndexLimit() {
     if (this.focusIndex >= this.historyKeyword.length) {
       this.focusIndex = this.historyKeyword.length;
-      this.initInputValue();
+      this.initInputForm();
     }
     if (this.focusIndex < 0) this.focusIndex = this.historyKeyword.length - 1;
   }
 
-  getFocusKeywordElement(index) {
-    return historyKeywordList.querySelectorAll("li")[index];
+  getFocusedKeywordElement(index) {
+    return recentKeywordList.querySelectorAll("li")[index];
   }
 
-  delete() {
+  initRecentKeyword() {
     this.historyKeyword = [];
     localStorage.setItem("keyword-history", "");
   }
 
-  searchForm(keywordElement) {
-    const searchForm = $(".search-keyword__input-text");
-    searchForm.value = keywordElement.dataset.value;
-  }
-
-  toggleSaveCommand(command, button) {
+  toggleKeywordSaveCommand(command, button) {
     button.dataset.command = command === "on" ? "off" : "on";
   }
 }

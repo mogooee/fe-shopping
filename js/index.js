@@ -22,15 +22,15 @@ Main.prototype.loadLocalStorage = function () {
 
 Main.prototype.loadHistoryKeyword = function (historyKeyword) {
   this.keywordStore.historyKeyword = historyKeyword;
-  this.renderer.historyKeyword(historyKeyword);
+  this.renderer.inputRecentKeyword(historyKeyword);
 };
 
 Main.prototype.initEventListener = function () {
-  const searchForm = "search-keyword__input-text";
-  const historyController = "history-keyword--controller";
+  const searchForm = "search-box__input-text";
+  const historyController = "recent-search-box--controller";
   document.addEventListener("click", (e) => {
     if (e.target.className === searchForm || e.target.parentNode.className === historyController) return;
-    this.renderer.hiddenHistoryKeyword();
+    this.renderer.hideRecentSearchBox();
   });
 };
 

@@ -1,7 +1,7 @@
 import { $ } from "../utils/utils.js";
 import { upKeyCode, downKeyCode } from "../constants.js";
 
-const historyKeywordList = $(".history-keyword--contents__list");
+const recentKeywordList = $(".recent-search-box--contents__list");
 
 export class RecentSearchBox {
   constructor(keywordStore, renderer) {
@@ -13,11 +13,11 @@ export class RecentSearchBox {
     this.initEventListener();
   }
   initEventListener() {
-    historyKeywordList.addEventListener("mouseover", (e) => {
+    recentKeywordList.addEventListener("mouseover", (e) => {
       this.checkFocus(e, "on");
     });
 
-    historyKeywordList.addEventListener("mouseout", (e) => {
+    recentKeywordList.addEventListener("mouseout", (e) => {
       this.checkFocus(e, "out");
     });
 
@@ -54,20 +54,26 @@ export class RecentSearchBox {
   updateFocusKeyword(keyDirection) {
     const control = "keyboard";
     const changedIndex = this.keywordStore.changeFocusIndex(control, keyDirection);
-    const focuskeywordElement = this.keywordStore.getFocusKeywordElement(changedIndex);
+    const focuskeywordElement = this.keywordStore.getFocusedKeywordElement(changedIndex);
     if (!focuskeywordElement) return;
-    this.keywordStore.searchForm(focuskeywordElement);
+    this.renderer.updateSearchBox(focuskeywordElement);
     this.renderer.onFocusKeyword(focuskeywordElement);
   }
 
   onController(command, button) {
-    if (command === "off") this.renderer.showHistoryOffAlert(button);
-    if (command === "on") this.renderer.showHistoryKeyword(button);
-    if (command !== "delete") this.keywordStore.toggleSaveCommand(command, button);
+    if (command === "off") {
+      this.keywordStore.recentKeywordSaveFlag = 0;
+      this.renderer.showRecentSearchOffAlert(button);
+    }
+    if (command === "on") {
+      this.keywordStore.recentKeywordSaveFlag = 1;
+      this.renderer.showRecentSearchBox(button);
+    }
+    if (command !== "delete") this.keywordStore.toggleKeywordSaveCommand(command, button);
     if (command === "delete") {
-      this.keywordStore.delete();
-      this.renderer.historyKeyword();
-      this.renderer.hiddenHistoryKeyword();
+      this.keywordStore.initRecentKeyword();
+      this.renderer.inputRecentKeyword();
+      this.renderer.hideRecentSearchBox();
     }
   }
 }
