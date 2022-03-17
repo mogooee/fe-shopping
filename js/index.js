@@ -12,6 +12,11 @@ const Main = function () {
   this.recentSearchBoxController = new RecentSearchBoxController(this.recentSearchBox);
 };
 
+Main.prototype.init = function () {
+  this.loadLocalStorage();
+  this.initEventListener();
+};
+
 Main.prototype.loadLocalStorage = function () {
   const keywordHistory = localStorage.getItem("keyword-history");
   if (keywordHistory) {
@@ -26,15 +31,16 @@ Main.prototype.loadkeywordHistory = function (keywordHistory) {
 };
 
 Main.prototype.initEventListener = function () {
-  const searchBox = "search-box__input-text";
-  const RecentSearchBoxController = "recent-search-box--controller";
   document.addEventListener("click", (e) => {
-    if (e.target.className === searchBox || e.target.parentNode.className === RecentSearchBoxController)
-      return;
+    if (this.isClickBlankSpace(e)) return;
     this.renderer.hideRecentSearchBox();
   });
 };
 
+Main.prototype.isClickBlankSpace = function (e) {
+  const searchBox = "search-box__input-text";
+  const RecentSearchBoxController = "recent-search-box--controller";
+  return e.target.className === searchBox || e.target.parentNode.className === RecentSearchBoxController;
+};
 const main = new Main();
-main.loadLocalStorage();
-main.initEventListener();
+main.init();

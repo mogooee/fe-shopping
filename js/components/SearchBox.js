@@ -20,11 +20,11 @@ export class SearchBox {
         this.renderer.showRecentSearchOffAlert();
         return;
       }
-      this.onFocusSearchForm();
+      this.onFocusSearchBox();
     });
 
     input.addEventListener("blur", () => {
-      this.outFocusKeyword();
+      this.outFocusSearchBox();
     });
 
     form.addEventListener("submit", (e) => {
@@ -37,14 +37,16 @@ export class SearchBox {
     });
   }
 
-  onFocusSearchForm() {
+  onFocusSearchBox() {
+    this.keywordStore.searchBoxFocusFlag = 1;
     const updatedIndex = this.keywordStore.updateFocusIndex();
     const keywordElement = this.keywordStore.getFocusedKeywordElement(updatedIndex);
     this.renderer.showRecentSearchBox();
     keywordElement && this.renderer.onFocusKeyword(keywordElement);
   }
 
-  outFocusKeyword() {
+  outFocusSearchBox() {
+    this.keywordStore.searchBoxFocusFlag = 0;
     const focusKeywordElement = $(".selected-keyword");
     focusKeywordElement && this.renderer.outFocusKeyword(focusKeywordElement);
   }

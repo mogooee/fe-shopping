@@ -1,5 +1,5 @@
 import { $ } from "../utils/utils.js";
-import { upKeyCode, downKeyCode } from "../constants.js";
+import { upKeyCode, downKeyCode } from "../constants/constants.js";
 
 const recentKeywordList = $(".recent-search-box--contents__list");
 
@@ -22,7 +22,7 @@ export class RecentSearchBox {
     });
 
     document.addEventListener("keyup", (e) => {
-      this.updateFocus(e);
+      this.keywordStore.searchBoxFocusFlag && this.updateFocus(e);
     });
   }
 

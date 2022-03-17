@@ -1,4 +1,4 @@
-import { maxKeywordNum } from "../constants.js";
+import { maxKeywordNum } from "../constants/constants.js";
 import { $ } from "../utils/utils.js";
 
 const inputForm = $(".search-box__input-text");
@@ -9,6 +9,7 @@ export class KeywordStore {
     this.recentKeywordArr = [];
     this.focusIndex = 0;
     this.recentKeywordSaveFlag = 1;
+    this.searchBoxFocusFlag = 0;
   }
 
   updateFocusIndex() {
