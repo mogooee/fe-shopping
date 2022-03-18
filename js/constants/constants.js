@@ -1,3 +1,3 @@
 export const maxKeywordNum = 9;
-export const upKeyCode = 38;
-export const downKeyCode = 40;
+export const upKey = "ArrowUp";
+export const downKey = "ArrowDown";

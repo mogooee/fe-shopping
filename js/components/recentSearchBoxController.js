@@ -10,11 +10,9 @@ export class RecentSearchBoxController {
     this.initEventListener();
   }
   initEventListener() {
-    controller.addEventListener("click", (e) => {
-      if (e.target.tagName !== "BUTTON") return;
-      const button = e.target;
-      const command = button.dataset.command;
-      this.recentSearchBox.onController(command, button);
+    controller.addEventListener("click", ({ target }) => {
+      if (target.tagName !== "BUTTON") return;
+      this.recentSearchBox.onController(target.dataset.command);
     });
   }
 }

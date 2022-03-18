@@ -1,4 +1,5 @@
 import { $ } from "../utils/utils.js";
+import { upKey, downKey } from "../constants/constants.js";
 
 const form = $(".search-box__input");
 const input = $(".search-box__input-text");
@@ -15,11 +16,16 @@ export class SearchBox {
   }
 
   initEventListeners() {
-    input.addEventListener("focus", () => {
-      if (!this.keywordStore.recentKeywordSaveFlag) {
-        this.renderer.showRecentSearchOffAlert();
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      if (!this.checkStorablilty()) {
+        this.keywordStore.initInputForm();
         return;
       }
+      this.inputKeyword();
+    });
+
+    input.addEventListener("focus", () => {
       this.onFocusSearchBox();
     });
 
@@ -27,28 +33,75 @@ export class SearchBox {
       this.outFocusSearchBox();
     });
 
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      if (this.isBlank() || !this.keywordStore.recentKeywordSaveFlag) {
-        this.keywordStore.initInputForm();
+    input.addEventListener("keyup", ({ key }) => {
+      if (this.isArrowKey(key)) {
+        this.updateFocusIndex(key);
         return;
       }
-      this.inputKeyword();
+
+      if (this.isInputBlank()) {
+        this.keywordStore.flag.autoCompletion = 0;
+        this.onFocusSearchBox();
+        return;
+      }
+
+      this.keywordStore.autoCompleteKeyword(input.value);
+      this.renderer.showAutoCompletionBox();
     });
   }
 
+  isInputBlank() {
+    return input.value.trim().length === 0;
+  }
+
+  checkStorablilty() {
+    return !this.isInputBlank() && this.keywordStore.flag.recentKeywordSave;
+  }
+
   onFocusSearchBox() {
-    this.keywordStore.searchBoxFocusFlag = 1;
-    const updatedIndex = this.keywordStore.updateFocusIndex();
-    const keywordElement = this.keywordStore.getFocusedKeywordElement(updatedIndex);
+    if (this.keywordStore.flag.autoCompletion) {
+      this.renderer.showAutoCompletionBox();
+      return;
+    }
+
+    if (!this.keywordStore.flag.recentKeywordSave) {
+      this.renderer.showRecentSearchOffAlert();
+      return;
+    }
+
+    this.updateRecentSearchBox();
+  }
+
+  updateRecentSearchBox() {
+    this.keywordStore.flag.searchBoxFocus = 1;
     this.renderer.showRecentSearchBox();
-    keywordElement && this.renderer.onFocusKeyword(keywordElement);
   }
 
   outFocusSearchBox() {
-    this.keywordStore.searchBoxFocusFlag = 0;
+    this.keywordStore.flag.searchBoxFocus = 0;
     const focusKeywordElement = $(".selected-keyword");
     focusKeywordElement && this.renderer.outFocusKeyword(focusKeywordElement);
+  }
+
+  isArrowKey(key) {
+    return key === upKey || key === downKey;
+  }
+
+  updateFocusIndex(keyDirection) {
+    if (!this.keywordStore.flag.searchBoxFocus) return;
+    //const keyDirection = key === upKey ? "up" : "down";
+    this.renderer.outFocusKeyword();
+    this.updateFocusKeyword(keyDirection);
+  }
+
+  updateFocusKeyword(keyDirection) {
+    const box = this.keywordStore.flag.autoCompletion ? "autoCompletion" : "recentSearch";
+    const control = "keyboard";
+    const changedIndex = this.keywordStore.changeFocusIndex(control, keyDirection, box);
+    const focuskeywordElement = this.keywordStore.getFocusedKeywordElement(changedIndex, box);
+    if (!focuskeywordElement) return;
+    this.renderer.updateSearchBox(focuskeywordElement);
+    this.renderer.onFocusKeyword(focuskeywordElement);
   }
 
   inputKeyword() {
@@ -60,9 +113,5 @@ export class SearchBox {
     this.keywordStore.isMaxSavedKeywordNum() && this.renderer.removeLastRecentKeyword();
     this.keywordStore.saveKeyword(keyword);
     this.renderer.inputRecentKeyword([keyword]);
-  }
-
-  isBlank() {
-    return input.value.trim().length === 0;
   }
 }

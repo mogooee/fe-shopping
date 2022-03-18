@@ -2,9 +2,9 @@
   position: absolute;
   width: 394px;
   right: -2px;
-  color: #bfbfbf;
+  color: $gray;
 
-  &--contents {
+  &__contents {
     @include box;
     width: 352px;
     border-bottom: 0px;

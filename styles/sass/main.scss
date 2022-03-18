@@ -8,8 +8,9 @@
 //componenets
 @import "./components/searcher";
 @import "./components/recent-search-box";
+@import "./components/auto-completion-box";
 
 //layout
 @import "./layout/header";
 
-// sass ./styles/sass/main.scss ./styles/css/style.css
+// sass --watch ./styles/sass/main.scss ./styles/css/style.css
