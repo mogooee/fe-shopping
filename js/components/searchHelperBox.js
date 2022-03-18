@@ -45,6 +45,7 @@ export class SearchHelperBox {
   onController(command) {
     if (command === "off") {
       this.keywordStore.flag.recentKeywordSave = 0;
+      this.keywordStore.flag.searchBoxFocus = 1;
       this.keywordStore.toggleKeywordSaveCommand(command);
       this.renderer.showRecentSearchOffAlert();
       this.renderer.toggleSaveBtn(command);
