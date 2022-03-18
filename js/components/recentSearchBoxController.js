@@ -2,8 +2,8 @@ import { $ } from "../utils/utils.js";
 const controller = $(".recent-search-box--controller");
 
 export class RecentSearchBoxController {
-  constructor(recentSearchBox) {
-    this.recentSearchBox = recentSearchBox;
+  constructor(searchHelperBox) {
+    this.searchHelperBox = searchHelperBox;
     this.init();
   }
   init() {
@@ -12,7 +12,7 @@ export class RecentSearchBoxController {
   initEventListener() {
     controller.addEventListener("click", ({ target }) => {
       if (target.tagName !== "BUTTON") return;
-      this.recentSearchBox.onController(target.dataset.command);
+      this.searchHelperBox.onController(target.dataset.command);
     });
   }
 }
