@@ -89,7 +89,6 @@ export class SearchBox {
 
   updateFocusIndex(keyDirection) {
     if (!this.keywordStore.flag.searchBoxFocus) return;
-    //const keyDirection = key === upKey ? "up" : "down";
     this.renderer.outFocusKeyword();
     this.updateFocusKeyword(keyDirection);
   }
