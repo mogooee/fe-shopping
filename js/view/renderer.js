@@ -6,7 +6,6 @@ const recentSearchBoxController = $(".recent-search-box--controller");
 const recentKeywordOFF = $(".recent-search-box__off");
 const recentKeywordList = $(".recent-search-box__contents__list");
 const autoCompletionBox = $(".auto-completion-box");
-const deleteBtn = $(".deleteBtn");
 const saveBtn = $(".saveBtn");
 
 export class Renderer {
@@ -29,8 +28,14 @@ export class Renderer {
     if (button) button.innerHTML = "최근검색어켜기";
   }
 
-  showAutoCompletionBox() {
+  showAutoCompletionBox(keywordArr) {
     autoCompletionBox.classList.remove("hidden");
+    const autoCompletionBoxList = $(".auto-completion-box__contents__list");
+    if (keywordArr)
+      autoCompletionBoxList.innerHTML = keywordArr.reduce(
+        (acc, cur) => acc + `<li data-value="${cur}">${cur}</li>`,
+        ""
+      );
   }
 
   hideKeywordBox() {

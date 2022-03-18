@@ -33,7 +33,7 @@ export class SearchBox {
       this.outFocusSearchBox();
     });
 
-    input.addEventListener("keyup", ({ key }) => {
+    input.addEventListener("keyup", async ({ key }) => {
       if (this.isArrowKey(key)) {
         this.updateFocusIndex(key);
         return;
@@ -45,8 +45,8 @@ export class SearchBox {
         return;
       }
 
-      this.keywordStore.autoCompleteKeyword(input.value);
-      this.renderer.showAutoCompletionBox();
+      const autoCompletionKeywordArr = await this.keywordStore.autoCompleteKeyword(input.value);
+      this.renderer.showAutoCompletionBox(autoCompletionKeywordArr);
     });
   }
 

@@ -9,6 +9,7 @@ export class KeywordStore {
   constructor() {
     this.recentKeywordArr = [];
     this.autoCompletionKeywordArr = [];
+    this.inputKeyword;
     this.focusIndex = 0;
     this.flag = { recentKeywordSave: 1, searchBoxFocus: 0, autoCompletion: 0 };
   }
@@ -106,19 +107,15 @@ export class KeywordStore {
   autoCompleteKeyword(keyword) {
     this.flag.autoCompletion = 1;
     this.inputKeyword = keyword;
-    const autoCompletionBoxList = $(".auto-completion-box__contents__list");
-    fetch(
+    return fetch(
       `https://completion.amazon.com/api/2017/suggestions?session-id=133-4736477-7395454&customer-id=&request-id=4YM3EXKRH1QJB16MSJGT&page-type=Gateway&lop=en_US&site-variant=desktop&client-info=amazon-search-ui&mid=ATVPDKIKX0DER&alias=aps&b2b=0&fresh=0&ks=71&prefix=${keyword}&event=onKeyPress&limit=11&fb=1&suggestion-type=KEYWORD`
     )
       .then((res) => res.json())
       .then((data) => data.suggestions.map((v) => v.value))
       .then((autoCompletionKeyword) => {
-        this.autoCompletionKeywordArr = autoCompletionKeyword;
         this.focusIndex = -1;
-        autoCompletionBoxList.innerHTML = autoCompletionKeyword.reduce(
-          (acc, cur) => acc + `<li data-value="${cur}">${cur}</li>`,
-          ""
-        );
+        this.autoCompletionKeywordArr = autoCompletionKeyword;
+        return autoCompletionKeyword;
       });
   }
 }
