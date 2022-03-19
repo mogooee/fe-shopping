@@ -1,5 +1,5 @@
 import { maxKeywordNum, upKey, downKey } from "../constants/constants.js";
-import { $ } from "../utils/utils.js";
+import { $, delay } from "../utils/utils.js";
 
 const inputForm = $(".search-box__input-text");
 const recentKeywordList = $(".recent-search-box__contents__list");
@@ -104,7 +104,8 @@ export class KeywordStore {
     saveBtn.dataset.command = command === "on" ? "off" : "on";
   }
 
-  autoCompleteKeyword(keyword) {
+  async autoCompleteKeyword(keyword) {
+    await this.debounceAutoCompletion();
     this.flag.autoCompletion = 1;
     this.inputKeyword = keyword;
     return fetch(
@@ -117,5 +118,10 @@ export class KeywordStore {
         this.autoCompletionKeywordArr = autoCompletionKeyword;
         return autoCompletionKeyword;
       });
+  }
+
+  async debounceAutoCompletion() {
+    delay.clear();
+    await delay.set(500);
   }
 }
