@@ -1,4 +1,5 @@
 import { $ } from "../utils/utils.js";
+import { upKey, downKey } from "../constants/constants.js";
 
 const form = $(".search-box__input");
 const input = $(".search-box__input-text");
@@ -32,7 +33,9 @@ export class SearchBox {
       this.outFocusSearchBox();
     });
 
-    input.addEventListener("keyup", async () => {
+    input.addEventListener("keyup", async ({ key }) => {
+      if (this.isArrowKey(key)) return;
+
       if (this.isInputBlank()) {
         this.keywordStore.flag.autoCompletion = 0;
         this.onFocusSearchBox();
@@ -67,6 +70,7 @@ export class SearchBox {
 
   updateRecentSearchBox() {
     this.keywordStore.flag.searchBoxFocus = 1;
+    this.keywordStore.flag.categoryBoxFocus = 0;
     this.renderer.showRecentSearchBox();
   }
 
@@ -91,5 +95,9 @@ export class SearchBox {
     const inputKeyword = this.keywordStore.inputKeyword;
     this.renderer.showAutoCompletionBox(autoCompletionKeywordArr);
     this.renderer.onfocusAutoCompletionKeyword(inputKeyword);
+  }
+
+  isArrowKey(key) {
+    return key === upKey || key === downKey;
   }
 }

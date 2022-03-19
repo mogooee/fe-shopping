@@ -50,8 +50,8 @@ export class SearchHelperBox {
   }
 
   decideFocusBox() {
-    if (this.keywordStore.flag.autoCompletion) return "autoCompletion";
     if (this.keywordStore.flag.categoryBoxFocus) return "category";
+    if (this.keywordStore.flag.autoCompletion) return "autoCompletion";
     else return "recentSearch";
   }
 

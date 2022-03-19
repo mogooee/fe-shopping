@@ -42,7 +42,7 @@ export class KeywordStore {
   }
 
   initInputForm(box) {
-    inputForm.value = box === "autoCompletion" ? this.inputKeyword : "";
+    inputForm.value = box === "recentSearch" ? "" : this.inputKeyword;
   }
 
   changeFocusIndex(event, base, box) {
