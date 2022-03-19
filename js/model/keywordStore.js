@@ -41,8 +41,12 @@ export class KeywordStore {
     localStorage.setItem("keyword-history", JSON.stringify(this.recentKeywordArr));
   }
 
-  initInputForm(box) {
-    inputForm.value = box === "recentSearch" ? "" : this.inputKeyword;
+  initInputForm() {
+    inputForm.value = "";
+  }
+
+  keepInputForm() {
+    inputForm.value = this.inputKeyword;
   }
 
   changeFocusIndex(event, base, box) {
@@ -82,7 +86,7 @@ export class KeywordStore {
     if (box === "recentSearch") {
       if (this.focusIndex >= keywordArr.length) {
         this.focusIndex = keywordArr.length;
-        this.initInputForm(box);
+        this.initInputForm();
       }
       if (this.focusIndex < 0) this.focusIndex = keywordArr.length - 1;
       return;
@@ -90,7 +94,7 @@ export class KeywordStore {
     if (this.focusIndex >= keywordArr.length) this.focusIndex = 0;
     if (this.focusIndex < 0) {
       this.focusIndex = -1;
-      this.initInputForm(box);
+      if (box === "autoCompletion") this.keepInputForm();
     }
   }
 
