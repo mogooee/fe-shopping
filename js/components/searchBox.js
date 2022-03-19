@@ -1,5 +1,4 @@
 import { $ } from "../utils/utils.js";
-import { upKey, downKey } from "../constants/constants.js";
 
 const form = $(".search-box__input");
 const input = $(".search-box__input-text");
@@ -33,12 +32,7 @@ export class SearchBox {
       this.outFocusSearchBox();
     });
 
-    input.addEventListener("keyup", async ({ key }) => {
-      if (this.isArrowKey(key)) {
-        this.updateFocusIndex(key);
-        return;
-      }
-
+    input.addEventListener("keyup", async () => {
       if (this.isInputBlank()) {
         this.keywordStore.flag.autoCompletion = 0;
         this.onFocusSearchBox();
@@ -77,29 +71,8 @@ export class SearchBox {
   }
 
   outFocusSearchBox() {
-    this.keywordStore.flag.searchBoxFocus = 0;
     const focusKeywordElement = $(".selected-keyword");
     focusKeywordElement && this.renderer.outFocusKeyword(focusKeywordElement);
-  }
-
-  isArrowKey(key) {
-    return key === upKey || key === downKey;
-  }
-
-  updateFocusIndex(keyDirection) {
-    if (!this.keywordStore.flag.searchBoxFocus) return;
-    this.renderer.outFocusKeyword();
-    this.updateFocusKeyword(keyDirection);
-  }
-
-  updateFocusKeyword(keyDirection) {
-    const box = this.keywordStore.flag.autoCompletion ? "autoCompletion" : "recentSearch";
-    const control = "keyboard";
-    const changedIndex = this.keywordStore.changeFocusIndex(control, keyDirection, box);
-    const focuskeywordElement = this.keywordStore.getFocusedKeywordElement(changedIndex, box);
-    if (!focuskeywordElement) return;
-    this.renderer.updateSearchBox(focuskeywordElement);
-    this.renderer.onFocusKeyword(focuskeywordElement);
   }
 
   inputKeyword() {

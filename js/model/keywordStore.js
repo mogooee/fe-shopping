@@ -1,17 +1,16 @@
-import { maxKeywordNum, upKey, downKey } from "../constants/constants.js";
+import { maxKeywordNum, upKey, downKey, categoryKeywordArr } from "../constants/constants.js";
 import { $, delay } from "../utils/utils.js";
 
 const inputForm = $(".search-box__input-text");
-const recentKeywordList = $(".recent-search-box__contents__list");
-const autoCompletionKeywordList = $(".auto-completion-box__contents__list");
 
 export class KeywordStore {
   constructor() {
     this.recentKeywordArr = [];
     this.autoCompletionKeywordArr = [];
+    this.categoryKeywordArr = categoryKeywordArr;
     this.inputKeyword;
     this.focusIndex = 0;
-    this.flag = { recentKeywordSave: 1, searchBoxFocus: 0, autoCompletion: 0 };
+    this.flag = { recentKeywordSave: 1, searchBoxFocus: 0, categoryBoxFocus: 0, autoCompletion: 0 };
   }
 
   updateFocusIndex() {
@@ -56,42 +55,57 @@ export class KeywordStore {
   }
 
   findFocusIndex(keywordElement, box) {
-    const keywordArr = box === "autoCompletion" ? this.autoCompletionKeywordArr : this.recentKeywordArr;
+    const keywordArr = this.decideKeywordArr(box);
     keywordArr.forEach((keyword, index) => {
       if (keyword === keywordElement.dataset.value) this.focusIndex = index;
     });
   }
 
-  calcFocusIndex(keyDirection, box) {
-    if (box === "autoCompletion") keyDirection = keyDirection === upKey ? downKey : upKey;
+  decideKeywordArr(box) {
+    if (box === "autoCompletion") return this.autoCompletionKeywordArr;
+    if (box === "category") return this.categoryKeywordArr;
+    else return this.recentKeywordArr;
+  }
 
-    if (keyDirection === upKey) this.focusIndex++;
-    else this.focusIndex--;
+  calcFocusIndex(ArrowKey, box) {
+    if (box === "recentSearch") ArrowKey = ArrowKey === upKey ? downKey : upKey;
+
+    if (ArrowKey === upKey) this.focusIndex--;
+    else this.focusIndex++;
 
     this.checkFocusIndexLimit(box);
     return this.focusIndex;
   }
 
   checkFocusIndexLimit(box) {
-    const keywordArr = box === "autoCompletion" ? this.autoCompletionKeywordArr : this.recentKeywordArr;
-    if (box === "autoCompletion") {
-      if (this.focusIndex >= keywordArr.length) this.focusIndex = 0;
-      if (this.focusIndex < 0) {
-        this.focusIndex = -1;
-        this.initInputForm(box);
-      }
-    } else {
+    const keywordArr = this.decideKeywordArr(box);
+    if (box === "recentSearch") {
       if (this.focusIndex >= keywordArr.length) {
         this.focusIndex = keywordArr.length;
         this.initInputForm(box);
       }
       if (this.focusIndex < 0) this.focusIndex = keywordArr.length - 1;
+      return;
+    }
+    if (this.focusIndex >= keywordArr.length) this.focusIndex = 0;
+    if (this.focusIndex < 0) {
+      this.focusIndex = -1;
+      this.initInputForm(box);
     }
   }
 
   getFocusedKeywordElement(index, box) {
-    const keywordList = box === "autoCompletion" ? autoCompletionKeywordList : recentKeywordList;
+    const keywordList = this.decideKeywordList(box);
     return keywordList.querySelectorAll("li")[index];
+  }
+
+  decideKeywordList(box) {
+    const recentKeywordList = $(".recent-search-box__contents__list");
+    const autoCompletionKeywordList = $(".auto-completion-box__contents__list");
+    const categoryList = $(".category-option-box__contents__list");
+    if (box === "autoCompletion") return autoCompletionKeywordList;
+    if (box === "category") return categoryList;
+    else return recentKeywordList;
   }
 
   initRecentKeyword() {

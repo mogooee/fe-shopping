@@ -10,7 +10,6 @@
   }
 
   &-form {
-    padding: 0px 10px;
     width: 484px;
     height: 37px;
     border: 2px solid {
@@ -19,10 +18,10 @@
     position: relative;
   }
 
-  &-category {
+  &-category-box {
     @include space-between;
-    padding: 0px 10px 0px 0px;
-    width: 25%;
+    width: 23.5%;
+    padding-left: 10px;
     z-index: -1;
     border-right: 1px solid {
       color: #ddd;
@@ -39,8 +38,10 @@
 
   &-box {
     display: flex;
+    height: 100%;
+    align-items: center;
     &__input-text {
-      width: 300px;
+      width: 286px;
       border: none;
       margin-left: 10px;
     }
@@ -51,7 +52,7 @@
 
     &__btn {
       color: $blue;
-      margin-left: 10px;
+      padding-right: 10px;
     }
     :focus {
       outline: none;

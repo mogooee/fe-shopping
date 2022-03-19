@@ -9,8 +9,9 @@
 @import "./components/searcher";
 @import "./components/recent-search-box";
 @import "./components/auto-completion-box";
+@import "./components/category";
+@import "./components/search-helper-box";
 
 //layout
 @import "./layout/header";
-
 // sass --watch ./styles/sass/main.scss ./styles/css/style.css

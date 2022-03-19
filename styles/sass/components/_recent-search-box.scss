@@ -1,14 +1,13 @@
 .recent-search-box {
+  width: 75%;
   position: absolute;
-  width: 394px;
   right: -2px;
-  color: $gray;
 
   &__contents {
     @include box;
-    width: 352px;
-    border-bottom: 0px;
     height: 300px;
+    padding: 0px 20px;
+    border-bottom: 0px;
     background: white;
 
     &__title {
@@ -42,6 +41,7 @@
     height: 32px;
     top: 379px;
     background-color: #f5f5f5;
+    padding: 0px 20px;
     button {
       font-size: 0.75em;
       color: #888;

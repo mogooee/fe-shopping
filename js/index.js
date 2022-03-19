@@ -1,6 +1,7 @@
 import { SearchBox } from "./components/searchBox.js";
 import { SearchHelperBox } from "./components/searchHelperBox.js";
 import { RecentSearchBoxController } from "./components/recentSearchBoxController.js";
+import { CategoryBox } from "./components/categoryBox.js";
 import { KeywordStore } from "./model/keywordStore.js";
 import { Renderer } from "./view/renderer.js";
 
@@ -9,6 +10,7 @@ const Main = function () {
   this.keywordStore = new KeywordStore();
   this.searchBox = new SearchBox(this.keywordStore, this.renderer);
   this.searchHelperBox = new SearchHelperBox(this.keywordStore, this.renderer);
+  this.categoryBox = new CategoryBox(this.keywordStore, this.renderer);
   this.recentSearchBoxController = new RecentSearchBoxController(this.searchHelperBox);
 };
 
@@ -33,14 +35,25 @@ Main.prototype.loadkeywordHistory = function (keywordHistory) {
 Main.prototype.initEventListener = function () {
   document.addEventListener("click", (e) => {
     if (this.isClickBlankSpace(e)) return;
+    this.initFocusFlag();
     this.renderer.hideKeywordBox();
   });
 };
 
-Main.prototype.isClickBlankSpace = function (e) {
+Main.prototype.initFocusFlag = function () {
+  this.keywordStore.flag.categoryBoxFocus = 0;
+  this.keywordStore.flag.searchBoxFocus = 0;
+};
+
+Main.prototype.isClickBlankSpace = function ({ target }) {
+  const searchBar = "search-bar";
   const searchBox = "search-box__input-text";
   const RecentSearchBoxController = "recent-search-box--controller";
-  return e.target.className === searchBox || e.target.parentNode.className === RecentSearchBoxController;
+  return (
+    target.className === searchBar ||
+    target.className === searchBox ||
+    target.parentNode.className === RecentSearchBoxController
+  );
 };
 
 const main = new Main();
