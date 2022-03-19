@@ -8,9 +8,11 @@ export class SearchHelperBox {
     this.renderer = renderer;
     this.init();
   }
+
   init() {
     this.initEventListener();
   }
+
   initEventListener() {
     searchHelperBox.addEventListener("mouseover", ({ target }) => {
       this.checkFocus(target, "on");

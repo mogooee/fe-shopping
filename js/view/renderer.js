@@ -66,6 +66,16 @@ export class Renderer {
     keywordElement.classList.add("selected-keyword");
   }
 
+  onfocusAutoCompletionKeyword(inputKeyword) {
+    const autoCompletionKeywordList = autoCompletionBox.querySelectorAll("li");
+    autoCompletionKeywordList.forEach((e) => {
+      e.innerHTML = e.innerHTML.replace(
+        new RegExp(inputKeyword),
+        "<span style='color:#4285f4'>" + inputKeyword + "</span>"
+      );
+    });
+  }
+
   outFocusKeyword() {
     const focusKeywordElement = $(".selected-keyword");
     focusKeywordElement && focusKeywordElement.classList.remove("selected-keyword");

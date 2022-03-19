@@ -105,7 +105,7 @@ export class KeywordStore {
   }
 
   async autoCompleteKeyword(keyword) {
-    await this.debounceAutoCompletion();
+    await this.delayAutoCompletion();
     this.flag.autoCompletion = 1;
     this.inputKeyword = keyword;
     return fetch(
@@ -120,7 +120,7 @@ export class KeywordStore {
       });
   }
 
-  async debounceAutoCompletion() {
+  async delayAutoCompletion() {
     delay.clear();
     await delay.set(500);
   }

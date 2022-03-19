@@ -45,8 +45,7 @@ export class SearchBox {
         return;
       }
 
-      const autoCompletionKeywordArr = await this.keywordStore.autoCompleteKeyword(input.value);
-      this.renderer.showAutoCompletionBox(autoCompletionKeywordArr);
+      await this.autoCompleteKeyword();
     });
   }
 
@@ -112,5 +111,12 @@ export class SearchBox {
     this.keywordStore.isMaxSavedKeywordNum() && this.renderer.removeLastRecentKeyword();
     this.keywordStore.saveKeyword(keyword);
     this.renderer.inputRecentKeyword([keyword]);
+  }
+
+  async autoCompleteKeyword() {
+    const autoCompletionKeywordArr = await this.keywordStore.autoCompleteKeyword(input.value);
+    const inputKeyword = this.keywordStore.inputKeyword;
+    this.renderer.showAutoCompletionBox(autoCompletionKeywordArr);
+    this.renderer.onfocusAutoCompletionKeyword(inputKeyword);
   }
 }
