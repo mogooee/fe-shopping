@@ -41,6 +41,10 @@ export class KeywordStore {
     localStorage.setItem("keyword-history", JSON.stringify(this.recentKeywordArr));
   }
 
+  updateRecentKeyword(DeletedKeyword) {
+    this.recentKeywordArr = this.recentKeywordArr.filter((recentKeyword) => recentKeyword !== DeletedKeyword);
+  }
+
   initInputForm() {
     inputForm.value = "";
   }

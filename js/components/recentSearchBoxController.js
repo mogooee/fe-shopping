@@ -1,5 +1,6 @@
 import { $ } from "../utils/utils.js";
 const controller = $(".recent-search-box--controller");
+const recentSearchKeywordList = $(".recent-search-box__contents__list");
 
 export class RecentSearchBoxController {
   constructor(searchHelperBox) {
@@ -11,8 +12,16 @@ export class RecentSearchBoxController {
   }
   initEventListener() {
     controller.addEventListener("click", ({ target }) => {
-      if (target.tagName !== "BUTTON") return;
-      this.searchHelperBox.onController(target.dataset.command);
+      this.isButton(target) && this.searchHelperBox.onController(target.dataset.command);
     });
+
+    recentSearchKeywordList.addEventListener("click", ({ target }) => {
+      const recentKeyword = target.closest("li");
+      this.isButton(target) && this.searchHelperBox.deleteRecentKeyword(recentKeyword);
+    });
+  }
+
+  isButton(target) {
+    return target.tagName === "BUTTON" || target.tagName == "I";
   }
 }

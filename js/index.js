@@ -34,7 +34,7 @@ Main.prototype.loadkeywordHistory = function (keywordHistory) {
 
 Main.prototype.initEventListener = function () {
   document.addEventListener("click", (e) => {
-    if (this.isClickBlankSpace(e)) return;
+    if (!this.isClickBlankSpace(e)) return;
     this.initFocusFlag();
     this.renderer.hideKeywordBox();
   });
@@ -49,10 +49,13 @@ Main.prototype.isClickBlankSpace = function ({ target }) {
   const searchBar = "search-bar";
   const searchBox = "search-box__input-text";
   const RecentSearchBoxController = "recent-search-box--controller";
+  const recnetKeywordDeleteBtn = "recent-keyword__delete-btn";
   return (
-    target.className === searchBar ||
-    target.className === searchBox ||
-    target.parentNode.className === RecentSearchBoxController
+    target.className !== searchBar &&
+    target.className !== searchBox &&
+    target.className !== recnetKeywordDeleteBtn &&
+    target.parentNode.className !== recnetKeywordDeleteBtn &&
+    target.parentNode.className !== RecentSearchBoxController
   );
 };
 

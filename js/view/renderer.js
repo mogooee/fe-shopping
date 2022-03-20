@@ -64,7 +64,12 @@ export class Renderer {
 
   inputRecentKeyword(keyword) {
     const position = "beforeend";
-    const inputKeyword = keyword.map((keyword) => `<li data-value="${keyword}">${keyword}</li>`).join("");
+    const inputKeyword = keyword
+      .map(
+        (keyword) =>
+          `<li data-value="${keyword}">${keyword}<button class="recent-keyword__delete-btn"><i class="fas fa-times"></i></button></li>`
+      )
+      .join("");
     recentKeywordList.insertAdjacentHTML(position, inputKeyword);
   }
 

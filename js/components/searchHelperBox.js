@@ -95,4 +95,11 @@ export class SearchHelperBox {
       this.renderer.hideRecentSearchBox();
     }
   }
+
+  deleteRecentKeyword(keyword) {
+    keyword.remove();
+    const Deletedkeyword = keyword.dataset.value;
+    this.keywordStore.updateRecentKeyword(Deletedkeyword);
+    this.keywordStore.saveLocalStorage();
+  }
 }

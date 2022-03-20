@@ -100,6 +100,11 @@ ul {
 .recent-search-box__contents__keywords li {
   padding: 5px 0px;
   font-size: 0.8em;
+  display: flex;
+  justify-content: space-between;
+}
+.recent-search-box__contents__keywords button i {
+  color: #bfbfbf;
 }
 .recent-search-box--controller {
   border: 1px solid;
@@ -169,6 +174,10 @@ ul {
 }
 .category-option-box__contents__list li {
   padding: 6px 0px;
+}
+.category-option-box:hover {
+  transition: 0.2s ease-in-out;
+  transform: translateY(-645px);
 }
 
 .search-helper-box {
