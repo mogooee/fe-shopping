@@ -1,6 +1,6 @@
 @mixin box {
-  padding: 0px 20px;
   border: 1px solid;
+  border-color: $gray;
   background-color: #fff;
 }
 

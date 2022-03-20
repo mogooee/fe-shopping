@@ -7,9 +7,10 @@
 
 //componenets
 @import "./components/searcher";
-@import "./components/history";
+@import "./components/recent-search-box";
+@import "./components/auto-completion-box";
+@import "./components/category";
+@import "./components/search-helper-box";
 
 //layout
 @import "./layout/header";
-
-// sass ./styles/sass/main.scss ./styles/css/style.css

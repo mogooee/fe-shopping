@@ -1,39 +1,63 @@
-import { SearchKeyword } from "./components/search-keyword.js";
-import { HistoryKeyword } from "./components/history-keyword.js";
-import { HistoryKeywordController } from "./components/history-keyword-controller.js";
+import { SearchBox } from "./components/searchBox.js";
+import { SearchHelperBox } from "./components/searchHelperBox.js";
+import { RecentSearchBoxController } from "./components/recentSearchBoxController.js";
+import { CategoryBox } from "./components/categoryBox.js";
 import { KeywordStore } from "./model/keywordStore.js";
-import { Rendering } from "./view/rendering.js";
+import { Renderer } from "./view/renderer.js";
 
 const Main = function () {
-  this.rendering = new Rendering();
+  this.renderer = new Renderer();
   this.keywordStore = new KeywordStore();
-  this.searchKeyword = new SearchKeyword(this.keywordStore, this.rendering);
-  this.historyKeyword = new HistoryKeyword(this.keywordStore, this.rendering);
-  this.historyKeywordController = new HistoryKeywordController(this.historyKeyword);
+  this.searchBox = new SearchBox(this.keywordStore, this.renderer);
+  this.searchHelperBox = new SearchHelperBox(this.keywordStore, this.renderer);
+  this.categoryBox = new CategoryBox(this.keywordStore, this.renderer);
+  this.recentSearchBoxController = new RecentSearchBoxController(this.searchHelperBox);
+};
+
+Main.prototype.init = function () {
+  this.loadLocalStorage();
+  this.initEventListener();
 };
 
 Main.prototype.loadLocalStorage = function () {
-  const HistoryKeyword = localStorage.getItem("search-keyword");
-  if (HistoryKeyword) {
-    const parsedHistoryKeyword = JSON.parse(HistoryKeyword);
-    this.loadHistoryKeyword(parsedHistoryKeyword);
+  const keywordHistory = localStorage.getItem("keyword-history");
+  if (keywordHistory) {
+    const parsedkeywordHistory = JSON.parse(keywordHistory);
+    this.loadkeywordHistory(parsedkeywordHistory);
   }
 };
 
-Main.prototype.loadHistoryKeyword = function (historyKeyword) {
-  this.keywordStore.historyKeyword = historyKeyword;
-  this.rendering.historyKeyword(historyKeyword);
+Main.prototype.loadkeywordHistory = function (keywordHistory) {
+  this.keywordStore.recentKeywordArr = keywordHistory;
+  this.renderer.inputRecentKeyword(keywordHistory);
 };
 
 Main.prototype.initEventListener = function () {
-  const searchForm = "search-keyword__input-text";
-  const historyController = "history-keyword--controller";
   document.addEventListener("click", (e) => {
-    if (e.target.className === searchForm || e.target.parentNode.className === historyController) return;
-    this.rendering.hiddenHistoryKeyword();
+    if (!this.isClickBlankSpace(e)) return;
+    this.initFocusFlag();
+    this.renderer.hideKeywordBox();
   });
 };
 
+Main.prototype.initFocusFlag = function () {
+  this.keywordStore.flag.categoryBoxFocus = 0;
+  this.keywordStore.flag.searchBoxFocus = 0;
+};
+
+Main.prototype.isClickBlankSpace = function ({ target }) {
+  const searchBar = "search-bar";
+  const searchBox = "search-box__input-text";
+  const RecentSearchBoxController = "recent-search-box--controller";
+  const recnetKeywordDeleteBtn = "recent-keyword__delete-btn";
+  return (
+    target.className !== searchBar &&
+    target.className !== searchBox &&
+    target.className !== recnetKeywordDeleteBtn &&
+    target.parentNode.className !== recnetKeywordDeleteBtn &&
+    target.parentNode.className !== RecentSearchBoxController
+  );
+};
+
 const main = new Main();
-main.loadLocalStorage();
-main.initEventListener();
+main.init();
