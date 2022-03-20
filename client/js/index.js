@@ -1,4 +1,4 @@
-import { SearchBox } from "./components/searchBox.js";
+import { SearchBox } from "./components/searchBox.js.js";
 import { SearchHelperBox } from "./components/searchHelperBox.js";
 import { RecentSearchBoxController } from "./components/recentSearchBoxController.js";
 import { CategoryBox } from "./components/categoryBox.js";

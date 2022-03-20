@@ -1,17 +1,18 @@
 import { $ } from "../utils/utils.js";
-const controller = $(".recent-search-box--controller");
+
 const recentSearchKeywordList = $(".recent-search-box__contents__list");
 
 export class RecentSearchBoxController {
   constructor(searchHelperBox) {
     this.searchHelperBox = searchHelperBox;
+    this.controller = $(".recent-search-box--controller");
     this.init();
   }
   init() {
     this.initEventListener();
   }
   initEventListener() {
-    controller.addEventListener("click", ({ target }) => {
+    this.controller.addEventListener("click", ({ target }) => {
       this.isButton(target) && this.searchHelperBox.onController(target.dataset.command);
     });
 

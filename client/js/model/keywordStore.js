@@ -1,8 +1,6 @@
 import { maxKeywordNum, upKey, downKey, categoryKeywordArr } from "../constants/constants.js";
 import { $, delay } from "../utils/utils.js";
 
-const inputForm = $(".search-box__input-text");
-
 export class KeywordStore {
   constructor() {
     this.recentKeywordArr = [];
@@ -46,10 +44,12 @@ export class KeywordStore {
   }
 
   initInputForm() {
+    const inputForm = $(".search-box__input-text");
     inputForm.value = "";
   }
 
   keepInputForm() {
+    const inputForm = $(".search-box__input-text");
     inputForm.value = this.inputKeyword;
   }
 
@@ -130,15 +130,13 @@ export class KeywordStore {
     await this.delayAutoCompletion();
     this.flag.autoCompletion = 1;
     this.inputKeyword = keyword;
-    return fetch(
-      `https://completion.amazon.com/api/2017/suggestions?session-id=133-4736477-7395454&customer-id=&request-id=4YM3EXKRH1QJB16MSJGT&page-type=Gateway&lop=en_US&site-variant=desktop&client-info=amazon-search-ui&mid=ATVPDKIKX0DER&alias=aps&b2b=0&fresh=0&ks=71&prefix=${keyword}&event=onKeyPress&limit=11&fb=1&suggestion-type=KEYWORD`
-    )
+    return fetch(`http://localhost:3000/autocomplete?keyword=${keyword}`)
       .then((res) => res.json())
-      .then((data) => data.suggestions.map((v) => v.value))
+      .then((data) => data.sort((a, b) => b.views - a.views).map((item) => item.keyword))
       .then((autoCompletionKeyword) => {
         this.focusIndex = -1;
         this.autoCompletionKeywordArr = autoCompletionKeyword;
-        return autoCompletionKeyword;
+        return this.autoCompletionKeywordArr;
       });
   }
 

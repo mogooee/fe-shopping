@@ -1,7 +1,6 @@
 import { $ } from "../utils/utils.js";
 const searchBar = $(".search-bar");
 const categoryOptionList = $(".category-option-box__contents__list");
-const searchCategoryBoxBtn = $(".search-category-box__btn");
 
 export class CategoryBox {
   constructor(keywordStore, renderer) {
@@ -29,6 +28,7 @@ export class CategoryBox {
     if (target.className !== "search-bar") return;
     this.keywordStore.flag.categoryBoxFocus = 1;
     this.keywordStore.flag.searchBoxFocus = 0;
+    this.keywordStore.focusIndex = -1;
     this.renderer.showCategoryOptionBox();
   }
   selectOption(target) {
