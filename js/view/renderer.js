@@ -1,4 +1,5 @@
 import { $ } from "../utils/utils.js";
+import { downKey } from "../constants/constants.js";
 
 const recentSearchBox = $(".recent-search-box");
 const recentSearchBoxContents = $(".recent-search-box__contents");
@@ -7,7 +8,8 @@ const recentKeywordOFF = $(".recent-search-box__off");
 const recentKeywordList = $(".recent-search-box__contents__list");
 const autoCompletionBox = $(".auto-completion-box");
 const categoryOptionBox = $(".category-option-box");
-const saveBtn = $(".saveBtn");
+const categoryOption = $(".category-option-box");
+const searchCategoryBoxBtn = $(".search-category-box__btn");
 
 export class Renderer {
   constructor() {}
@@ -20,6 +22,7 @@ export class Renderer {
     recentSearchBoxController.classList.remove("hidden");
     recentSearchBoxContents.classList.remove("hidden");
     if (button) button.innerHTML = "최근검색어끄기";
+    searchCategoryBoxBtn.innerHTML = `<i class="fas fa-caret-down"></i>`;
   }
 
   showRecentSearchOffAlert(button) {
@@ -46,12 +49,15 @@ export class Renderer {
     categoryOptionBox.classList.toggle("hidden");
     recentSearchBox.classList.add("hidden");
     autoCompletionBox.classList.add("hidden");
+    const isHidden = categoryOption.className.split(" ").includes("hidden");
+    searchCategoryBoxBtn.innerHTML = `<i class="fas fa-caret-${isHidden ? "down" : "up"}"></i>`;
   }
 
   hideKeywordBox() {
     recentSearchBox.classList.add("hidden");
     autoCompletionBox.classList.add("hidden");
     categoryOptionBox.classList.add("hidden");
+    searchCategoryBoxBtn.innerHTML = `<i class="fas fa-caret-down"></i>`;
   }
 
   hideRecentSearchBox() {
@@ -113,6 +119,7 @@ export class Renderer {
   }
 
   toggleSaveBtn(command) {
+    const saveBtn = $(".saveBtn");
     if (command === "on") saveBtn.innerHTML = "최근검색어끄기";
     else saveBtn.innerHTML = "최근검색어켜기";
   }
@@ -120,5 +127,13 @@ export class Renderer {
   selectCategoryOption(option) {
     const SelectedCategory = $(".search-category-box p");
     SelectedCategory.innerHTML = option;
+  }
+
+  initScrollCategory() {
+    categoryOption.scrollTo(0, 0);
+  }
+
+  scrollCategory(ArrowKey) {
+    categoryOption.scrollBy(0, ArrowKey === downKey ? 10 : -10);
   }
 }

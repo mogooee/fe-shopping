@@ -73,6 +73,12 @@ export class SearchHelperBox {
     if (!focuskeywordElement) return;
     this.renderer.updateSearchBox(focuskeywordElement, box);
     this.renderer.onFocusKeyword(focuskeywordElement);
+    if (box === "category") this.scrollCategory(ArrowKey);
+  }
+
+  scrollCategory(ArrowKey) {
+    if (!this.keywordStore.focusIndex) this.renderer.initScrollCategory();
+    this.renderer.scrollCategory(ArrowKey);
   }
 
   onController(command) {

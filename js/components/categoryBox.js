@@ -1,6 +1,7 @@
 import { $ } from "../utils/utils.js";
 const searchBar = $(".search-bar");
 const categoryOptionList = $(".category-option-box__contents__list");
+const searchCategoryBoxBtn = $(".search-category-box__btn");
 
 export class CategoryBox {
   constructor(keywordStore, renderer) {

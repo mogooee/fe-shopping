@@ -7,6 +7,10 @@
   &-bar {
     @include vertical-align;
     height: 100%;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   &-form {

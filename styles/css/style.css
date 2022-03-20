@@ -25,6 +25,9 @@ ul {
   align-items: center;
   height: 100%;
 }
+.search-bar:hover {
+  cursor: pointer;
+}
 .search-form {
   width: 484px;
   height: 37px;
@@ -174,10 +177,6 @@ ul {
 }
 .category-option-box__contents__list li {
   padding: 6px 0px;
-}
-.category-option-box:hover {
-  transition: 0.2s ease-in-out;
-  transform: translateY(-645px);
 }
 
 .search-helper-box {
