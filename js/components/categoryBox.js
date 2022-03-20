@@ -28,6 +28,7 @@ export class CategoryBox {
   openOption(target) {
     if (target.className !== "search-bar") return;
     this.keywordStore.flag.categoryBoxFocus = 1;
+    this.keywordStore.flag.searchBoxFocus = 0;
     this.renderer.showCategoryOptionBox();
   }
   selectOption(target) {
@@ -36,6 +37,7 @@ export class CategoryBox {
   }
   finishSelectingOption(key) {
     if (!this.keywordStore.flag.categoryBoxFocus || key !== "Enter") return;
+    this.keywordStore.flag.categoryBoxFocus = 0;
     this.renderer.hideCategoryOptionBox();
   }
 }

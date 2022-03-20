@@ -54,8 +54,12 @@ export class SearchBox {
     return !this.isInputBlank() && this.keywordStore.flag.recentKeywordSave;
   }
 
-  onFocusSearchBox() {
+  async onFocusSearchBox() {
+    this.keywordStore.flag.searchBoxFocus = 1;
+    this.keywordStore.flag.categoryBoxFocus = 0;
+
     if (this.keywordStore.flag.autoCompletion) {
+      await this.autoCompleteKeyword();
       this.renderer.showAutoCompletionBox();
       return;
     }

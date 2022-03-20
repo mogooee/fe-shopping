@@ -66,6 +66,7 @@ export class Renderer {
 
   hideCategoryOptionBox() {
     categoryOptionBox.classList.add("hidden");
+    searchCategoryBoxBtn.innerHTML = `<i class="fas fa-caret-down"></i>`;
   }
 
   inputRecentKeyword(keyword) {
