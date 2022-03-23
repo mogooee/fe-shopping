@@ -35,21 +35,6 @@ ul {
   border-color: #4285f4;
   position: relative;
 }
-.search-category-box {
-  display: flex;
-  justify-content: space-between;
-  width: 23.5%;
-  padding-left: 10px;
-  z-index: -1;
-  border-right: 1px solid;
-  border-right-color: #ddd;
-}
-.search-category-box p {
-  font-size: 13px;
-}
-.search-category-box__btn {
-  color: #bfbfbf;
-}
 .search-box {
   display: flex;
   height: 100%;
@@ -160,6 +145,21 @@ ul {
   font-size: 0.8em;
 }
 
+.category-box {
+  display: flex;
+  justify-content: space-between;
+  width: 23.5%;
+  padding-left: 10px;
+  z-index: -1;
+  border-right: 1px solid;
+  border-right-color: #ddd;
+}
+.category-box p {
+  font-size: 13px;
+}
+.category-box__btn {
+  color: #bfbfbf;
+}
 .category-option-box {
   border: 1px solid;
   border-color: #bfbfbf;

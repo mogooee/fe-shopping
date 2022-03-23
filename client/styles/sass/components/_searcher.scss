@@ -22,24 +22,6 @@
     position: relative;
   }
 
-  &-category-box {
-    @include space-between;
-    width: 23.5%;
-    padding-left: 10px;
-    z-index: -1;
-    border-right: 1px solid {
-      color: #ddd;
-    }
-
-    p {
-      font-size: 13px;
-    }
-
-    &__btn {
-      color: #bfbfbf;
-    }
-  }
-
   &-box {
     display: flex;
     height: 100%;
