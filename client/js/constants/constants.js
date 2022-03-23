@@ -1,7 +1,7 @@
-export const maxKeywordNum = 9;
+export const maxKeywordNum = 8;
 export const upKey = "ArrowUp";
 export const downKey = "ArrowDown";
-export const categoryKeywordArr = [
+export const categoryOptions = [
   "전체",
   "여성패션",
   "남성패션",
