@@ -59,7 +59,7 @@ export class SearchBoxController {
     this.keywordStore.flag.categoryBoxFocus = 0;
     this.categoryOptionBox.hideCategoryOptionBox();
     if (this.keywordStore.flag.autoCompletion) {
-      if (!this.isInputBlank) await this.autoCompleteKeyword();
+      if (!this.isInputBlank()) await this.autoCompleteKeyword();
       return;
     }
     this.onFocusRecentSearchBox();
