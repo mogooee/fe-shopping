@@ -12,6 +12,7 @@ export class SearchHelperController {
 
   setState() {
     this.searchHelperBox = $(".search-helper-box");
+    this.input = $(".search-box__input-text");
   }
 
   setEvent() {
@@ -23,8 +24,11 @@ export class SearchHelperController {
       this.checkFocus(target, "out");
     });
 
-    document.addEventListener("keyup", ({ key }) => {
-      this.isArrowKey(key) && this.checkOpenBox() && this.updateFocusIndex(key);
+    document.addEventListener("keydown", (e) => {
+      !e.isComposing &&
+        this.checkArrowKey(e.key) && //
+        this.checkOpenBox() &&
+        this.updateFocusIndex(e.key);
     });
   }
 
@@ -45,7 +49,7 @@ export class SearchHelperController {
     this.onFocusKeyword(keywordElement);
   }
 
-  isArrowKey(key) {
+  checkArrowKey(key) {
     return key === upKey || key === downKey;
   }
 
@@ -81,7 +85,6 @@ export class SearchHelperController {
     this.categoryOptionBox.scrollCategory(ArrowKey);
   }
 
-  //3개의 뷰에서 공통으로 쓰이는데 뷰로 어떻게 뺄까?
   onFocusKeyword(keywordElement) {
     keywordElement.classList.add("selected-keyword");
   }
