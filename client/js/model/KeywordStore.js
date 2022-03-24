@@ -6,7 +6,9 @@ export class KeywordStore {
     this.inputKeyword;
     this.recentKeywordArr = [];
     this.focusIndex = 0;
-    this.flag = { recentKeywordSave: 1, searchBoxFocus: 0, categoryBoxFocus: 0, autoCompletion: 0 };
+    this.focusBox = "";
+    this.recentKeywordSaveFlag = 1;
+    this.delay = delay;
     this.loadKeywordHistoryLocalStorage();
   }
 
@@ -121,7 +123,6 @@ export class KeywordStore {
   async autoCompleteKeyword(keyword) {
     await this.delayAutoCompletion();
     this.inputKeyword = keyword;
-    this.flag.autoCompletion = 1;
     this.focusIndex = -1;
     const response = await fetch(`http://localhost:3000/autocomplete?keyword=${keyword}`);
     const data = await response.json();
@@ -129,7 +130,7 @@ export class KeywordStore {
   }
 
   async delayAutoCompletion() {
-    delay.clear();
-    await delay.set(100);
+    this.delay.clear();
+    await this.delay.set(500);
   }
 }

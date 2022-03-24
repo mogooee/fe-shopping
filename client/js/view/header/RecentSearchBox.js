@@ -68,12 +68,11 @@ export class RecentSearchBox extends Component {
   }
 
   inputRecentKeyword(keyword) {
-    let index = 0;
     const position = "beforeend";
     const inputKeyword = keyword
       .map(
-        (keyword) =>
-          `<li data-value="${keyword}" data-index="${index++}">${keyword}<button class="recent-keyword__delete-btn"><i class="fas fa-times"></i></button></li>`
+        (keyword, index) =>
+          `<li data-value="${keyword}" data-index="${index}">${keyword}<button class="recent-keyword__delete-btn"><i class="fas fa-times"></i></button></li>`
       )
       .join("");
     this.initRecentKeyword();

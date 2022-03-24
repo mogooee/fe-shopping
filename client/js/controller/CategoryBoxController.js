@@ -24,27 +24,28 @@ export class CategoryBoxController {
     });
 
     document.addEventListener("keyup", ({ key }) => {
-      if (key === "Enter" && this.keywordStore.flag.categoryBoxFocus) this.finishSelectingOption();
+      key === "Enter" && //
+        this.keywordStore.focusBox === "categoryBox" &&
+        this.finishSelectingOption();
     });
   }
 
   openOption(target) {
     if (target.className !== "search-bar") return;
-    this.keywordStore.flag.categoryBoxFocus = 1;
-    this.keywordStore.flag.searchBoxFocus = 0;
+    this.keywordStore.focusBox = "categoryBox";
     this.keywordStore.focusIndex = -1;
     this.categoryOptionBox.showCategoryOptionBox();
   }
 
   selectOption(target) {
     const selectedOption = target.dataset.value;
+    this.keywordStore.focusBox = "";
     this.categoryBox.selectCategoryOption(selectedOption);
     this.categoryOptionBox.hideCategoryOptionBox();
   }
 
   finishSelectingOption() {
-    if (!this.keywordStore.flag.categoryBoxFocus) return;
-    this.keywordStore.flag.categoryBoxFocus = 0;
+    this.keywordStore.focusBox = "";
     this.categoryOptionBox.hideCategoryOptionBox();
   }
 }

@@ -35,27 +35,25 @@ export class RecentSearchBoxController {
 
   onController(command) {
     if (command === "off") {
-      this.keywordStore.flag.recentKeywordSave = 0;
-      this.keywordStore.flag.searchBoxFocus = 1;
+      this.keywordStore.recentKeywordSaveFlag = 0;
       this.keywordStore.toggleKeywordSaveCommand(command);
+      this.recentSearchBox.toggleSaveBtn(command);
       this.recentSearchBox.showRecentSearchOffAlert();
-      this.recentSearchBox.toggleSaveBtn(command);
     } else if (command === "on") {
-      this.keywordStore.flag.recentKeywordSave = 1;
+      this.keywordStore.recentKeywordSaveFlag = 1;
       this.keywordStore.toggleKeywordSaveCommand(command);
-      this.recentSearchBox.showRecentSearchBox();
       this.recentSearchBox.toggleSaveBtn(command);
+      this.recentSearchBox.showRecentSearchBox();
     } else if (command === "delete") {
       this.keywordStore.initRecentKeyword();
       this.recentSearchBox.initRecentKeyword();
-      this.recentSearchBox.hideRecentSearchBox();
     }
   }
 
   deleteRecentKeyword(keyword) {
     keyword.remove();
-    const Deletedkeyword = keyword.dataset.value;
-    this.keywordStore.updateRecentKeyword(Deletedkeyword);
+    const deletedkeyword = keyword.dataset.value;
+    this.keywordStore.updateRecentKeyword(deletedkeyword);
     this.keywordStore.saveLocalStorage();
   }
 }

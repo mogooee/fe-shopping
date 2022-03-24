@@ -25,8 +25,8 @@ export class SearchHelperController {
     });
 
     document.addEventListener("keydown", (e) => {
-      !e.isComposing &&
-        this.checkArrowKey(e.key) && //
+      !e.isComposing && //
+        this.checkArrowKey(e.key) &&
         this.checkOpenBox() &&
         this.updateFocusIndex(e.key);
     });
@@ -54,17 +54,16 @@ export class SearchHelperController {
   }
 
   decideFocusBox() {
-    if (this.keywordStore.flag.categoryBoxFocus) return "category";
-    if (this.keywordStore.flag.autoCompletion) return "autoCompletion";
+    if (this.keywordStore.focusBox === "categoryBox") return "category";
+    if (this.keywordStore.focusBox === "autoCompletionBox") return "autoCompletion";
     else return "recentSearch";
   }
 
   checkOpenBox() {
-    return this.keywordStore.flag.searchBoxFocus || this.keywordStore.flag.categoryBoxFocus;
+    return this.keywordStore.focusBox !== "";
   }
 
   updateFocusIndex(ArrowKey) {
-    if (!this.keywordStore.flag.searchBoxFocus && !this.keywordStore.flag.categoryBoxFocus) return;
     this.outFocusKeyword();
     this.updateFocusKeyword(ArrowKey);
   }

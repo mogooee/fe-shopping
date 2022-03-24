@@ -25,8 +25,8 @@ export class SearchBox extends Component {
   updateSearchBox(keywordElement, box) {
     const value = keywordElement.dataset.value;
     if (box === "category") {
-      const SelectedCategory = $(".category-box p");
-      SelectedCategory.innerHTML = value;
+      const selectedCategory = $(".category-box p");
+      selectedCategory.innerHTML = value;
       return;
     }
     this.searchForm.value = value;
