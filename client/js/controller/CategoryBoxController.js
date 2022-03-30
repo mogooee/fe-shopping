@@ -1,50 +1,42 @@
-import { $ } from "../utils/utils.js";
-
 export class CategoryBoxController {
-  constructor(keywordStore, categoryBox, categoryOptionBox) {
+  constructor(keywordStore) {
     this.keywordStore = keywordStore;
-    this.categoryBox = categoryBox;
-    this.categoryOptionBox = categoryOptionBox;
-    this.setState();
-    this.setEvent();
   }
 
-  setState() {
-    this.searchBar = $(".search-bar");
-    this.categoryOptionList = $(".category-option-box__contents__list");
+  outFocusCategoryBox() {
+    this.hideCategoryOption();
   }
 
-  setEvent() {
-    this.searchBar.addEventListener("click", ({ target }) => {
-      this.openOption(target);
-    });
-
-    this.categoryOptionList.addEventListener("click", ({ target }) => {
-      this.selectOption(target);
-    });
-
-    document.addEventListener("keyup", ({ key }) => {
-      if (key === "Enter" && this.keywordStore.flag.categoryBoxFocus) this.finishSelectingOption();
-    });
+  toggleOptionBox() {
+    this.keywordStore.focusCategoryBox({ AFTER_FN: this.toggleCategoryOptionBox });
   }
 
-  openOption(target) {
-    if (target.className !== "search-bar") return;
-    this.keywordStore.flag.categoryBoxFocus = 1;
-    this.keywordStore.flag.searchBoxFocus = 0;
-    this.keywordStore.focusIndex = -1;
-    this.categoryOptionBox.showCategoryOptionBox();
-  }
-
-  selectOption(target) {
+  selectOptionMouse(target) {
     const selectedOption = target.dataset.value;
-    this.categoryBox.selectCategoryOption(selectedOption);
-    this.categoryOptionBox.hideCategoryOptionBox();
+    this.showCategoryOption(selectedOption);
+    this.outFocusCategoryBox();
   }
 
+  selectOptionKeyboard(arrowKey) {
+    if (this.keywordStore.focusBox !== "categoryBox") return;
+    const boxLength = Array.from(this.categoryList).length;
+    this.keywordStore.updateKeyboardFocusIndex(arrowKey, boxLength, {
+      AFTER_FN: this.focusCategory,
+    });
+    this.scrollCategory(arrowKey);
+  }
+
+  scrollCategory(ArrowKey) {
+    if (this.keywordStore.focusIndex === 0) this.initScroll();
+    this.scrollUpDown(ArrowKey);
+  }
+
+  hoverOption(target) {
+    this.keywordStore.updateMouseFocusIndex(target.dataset.index, { AFTER_FN: this.focusCategory });
+  }
+
+  //아직 안씀
   finishSelectingOption() {
-    if (!this.keywordStore.flag.categoryBoxFocus) return;
-    this.keywordStore.flag.categoryBoxFocus = 0;
-    this.categoryOptionBox.hideCategoryOptionBox();
+    if (this.keywordStore.focusBox === "categoryBox") this.keywordStore.focusBox = "";
   }
 }
