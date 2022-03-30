@@ -1,136 +1,107 @@
-import { maxKeywordNum, upKey, downKey } from "../constants/constants.js";
-import { $, delay } from "../utils/utils.js";
+import { upKey } from "../constants/constants.js";
 
 export class KeywordStore {
   constructor() {
-    this.inputKeyword;
+    this.searchKeyword;
     this.recentKeywordArr = [];
-    this.focusIndex = 0;
+    this.autoCompletionKeywordArr = [];
+    this.focusIndex = -1;
     this.focusBox = "";
     this.recentKeywordSaveFlag = 1;
-    this.delay = delay;
-    this.loadKeywordHistoryLocalStorage();
   }
 
-  loadKeywordHistoryLocalStorage() {
-    const keywordHistory = localStorage.getItem("keyword-history");
-    if (keywordHistory) this.recentKeywordArr = JSON.parse(keywordHistory);
+  focusCategoryBox({ AFTER_FN }) {
+    this.focusBox = this.focusBox === "categoryBox" ? "" : "categoryBox";
+    this.focusIndex = -1;
+    if (AFTER_FN) AFTER_FN();
   }
 
-  initRecentKeyword() {
-    this.recentKeywordArr = [];
-    localStorage.setItem("keyword-history", "");
+  updateKeyboardFocusIndex(arrowKey, boxLength, { AFTER_FN }, startIndex, finishIndex) {
+    if (!boxLength) return;
+    const minIndex = 0;
+    const maxIndex = boxLength - 1;
+    if (arrowKey === upKey) {
+      this.focusIndex--;
+      if (this.focusIndex < minIndex) {
+        this.focusIndex = finishIndex;
+        if (this.focusBox === "auto-search") return AFTER_FN(this.focusIndex, "keyboard", this.searchKeyword);
+      }
+    } else {
+      this.focusIndex++;
+      if (this.focusIndex > maxIndex) {
+        this.focusIndex = startIndex;
+        if (this.focusBox === "recent-search") return AFTER_FN(this.focusIndex, "keyboard", "");
+      }
+    }
+    if (AFTER_FN) AFTER_FN(this.focusIndex, "keyboard");
   }
 
-  saveKeyword(keyword) {
+  updateMouseFocusIndex(index, { AFTER_FN }) {
+    this.focusIndex = index;
+    if (AFTER_FN) AFTER_FN(this.focusIndex, "mouse");
+  }
+
+  initRecentKeyword(keywordHistory) {
+    this.recentKeywordArr = keywordHistory;
+  }
+
+  saveRecentKeyword(keyword, { AFTER_FN }) {
     this.addRecentKeyword(keyword);
     this.saveLocalStorage();
-    this.initInputForm();
-  }
-
-  isExistingRecentKeyword(keyword) {
-    return this.recentKeywordArr.includes(keyword);
+    if (AFTER_FN) AFTER_FN(this.recentKeywordArr);
   }
 
   addRecentKeyword(keyword) {
-    this.isMaxSavedKeywordNum() && this.recentKeywordArr.shift();
     this.recentKeywordArr.push(keyword);
-  }
-
-  updateRecentKeyword(DeletedKeyword) {
-    this.recentKeywordArr = this.recentKeywordArr.filter((recentKeyword) => recentKeyword !== DeletedKeyword);
-  }
-
-  isMaxSavedKeywordNum() {
-    return this.recentKeywordArr.length === maxKeywordNum;
   }
 
   saveLocalStorage() {
     localStorage.setItem("keyword-history", JSON.stringify(this.recentKeywordArr));
   }
 
-  initInputForm() {
-    const inputForm = $(".search-box__input-text");
-    inputForm.value = "";
+  deleteOverflowRecentKeyword({ AFTER_FN }) {
+    this.recentKeywordArr.shift();
+    this.saveLocalStorage();
+    if (AFTER_FN) AFTER_FN();
   }
 
-  keepInputForm() {
-    const inputForm = $(".search-box__input-text");
-    inputForm.value = this.inputKeyword;
+  deleteAllRecentKeyword() {
+    this.recentKeywordArr = [];
+    localStorage.setItem("keyword-history", "");
   }
 
-  changeFocusIndex(event, base, box) {
-    switch (event) {
-      case "mouse":
-        return this.findFocusIndex(base);
-      case "keyboard":
-        return this.calcFocusIndex(base, box);
-    }
+  focusRecentSearch({ SAVE_ON, SAVE_OFF }) {
+    this.focusBox = "recent-search";
+    if (SAVE_ON || SAVE_OFF)
+      if (this.recentKeywordSaveFlag) SAVE_ON(this.recentKeywordArr);
+      else SAVE_OFF();
   }
 
-  findFocusIndex(keywordElement) {
-    this.focusIndex = keywordElement.dataset.index;
-    return this.focusIndex;
+  updateRecentKeyword(DeletedKeyword, { AFTER_FN }) {
+    this.recentKeywordArr = this.recentKeywordArr.filter(
+      (recentKeyword) => recentKeyword !== DeletedKeyword.dataset.value
+    );
+    this.saveLocalStorage();
+    if (AFTER_FN) AFTER_FN(DeletedKeyword, this.recentKeywordArr);
   }
 
-  calcFocusIndex(ArrowKey, box) {
-    if (box === "recentSearch") ArrowKey = ArrowKey === upKey ? downKey : upKey;
-
-    if (ArrowKey === upKey) this.focusIndex--;
-    else this.focusIndex++;
-
-    this.checkFocusIndexLimit(box);
-    return this.focusIndex;
+  toggleRecentKeywordSaveFlag({ AFTER_FN }) {
+    this.recentKeywordSaveFlag = this.recentKeywordSaveFlag === 1 ? 0 : 1;
+    if (AFTER_FN) AFTER_FN(this.recentKeywordArr);
   }
 
-  checkFocusIndexLimit(box) {
-    const keywordList = this.decideKeywordList(box);
-    const keywordArr = Array.from(keywordList.children);
-    if (box === "recentSearch") {
-      if (this.focusIndex >= keywordArr.length) {
-        this.focusIndex = keywordArr.length;
-        this.initInputForm();
-      }
-      if (this.focusIndex < 0) this.focusIndex = keywordArr.length - 1;
-      return;
-    }
-    if (this.focusIndex >= keywordArr.length) this.focusIndex = 0;
-    if (this.focusIndex < 0) {
-      this.focusIndex = -1;
-      if (box === "autoCompletion") this.keepInputForm();
-    }
-  }
-
-  getFocusedKeywordElement(index, box) {
-    const keywordList = this.decideKeywordList(box);
-    return keywordList.querySelectorAll("li")[index];
-  }
-
-  decideKeywordList(box) {
-    const recentKeywordList = $(".recent-search-box__contents__list");
-    const autoCompletionKeywordList = $(".auto-completion-box__contents__list");
-    const categoryList = $(".category-option-box__contents__list");
-    if (box === "autoCompletion") return autoCompletionKeywordList;
-    if (box === "category") return categoryList;
-    else return recentKeywordList;
-  }
-
-  toggleKeywordSaveCommand(command) {
-    const saveBtn = $(".saveBtn");
-    saveBtn.dataset.command = command === "on" ? "off" : "on";
-  }
-
-  async autoCompleteKeyword(keyword) {
-    await this.delayAutoCompletion();
-    this.inputKeyword = keyword;
+  saveAutoCompletionKeyword(searchKeyword, autoCompletionKeywords, { AFTER_FN }) {
+    this.focusBox = "auto-search";
     this.focusIndex = -1;
-    const response = await fetch(`http://localhost:3000/autocomplete?keyword=${keyword}`);
-    const data = await response.json();
-    return data.sort((a, b) => b.views - a.views).map((item) => item.keyword);
+    this.searchKeyword = searchKeyword;
+    this.autoCompletionKeywordArr = autoCompletionKeywords;
+    if (AFTER_FN) AFTER_FN(this.searchKeyword, this.autoCompletionKeywordArr);
   }
 
-  async delayAutoCompletion() {
-    this.delay.clear();
-    await this.delay.set(500);
+  async SaveAutoCompletionKeyword(searchKeyword, keywordArr) {
+    this.searchKeyword = searchKeyword;
+    this.autoCompletionKeywordArr = keywordArr;
+    this.focusIndex = -1;
+    this.focusBox = "autoCompletionBox";
   }
 }
