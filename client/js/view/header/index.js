@@ -2,7 +2,7 @@ import { $ } from "../../utils/utils.js";
 import { KeywordStore } from "../../model/KeywordStore.js";
 import { CategoryBar } from "./CategoryBar.js";
 import { SearchBar } from "./SearchBar.js";
-import { CategoryBoxController } from "../../controller/CategoryBoxController.js";
+import { CategoryBarController } from "../../controller/CategoryBarController.js";
 import { SearchBarController } from "../../controller/SearchBarController.js";
 
 export class Header {
@@ -34,10 +34,10 @@ export class Header {
   mount() {
     const keywordStore = new KeywordStore();
 
-    const categoryBoxController = new CategoryBoxController(keywordStore);
+    const categoryBarController = new CategoryBarController(keywordStore);
     const searchBarController = new SearchBarController(keywordStore);
 
-    const categoryBar = new CategoryBar($(".category-bar"), categoryBoxController);
+    const categoryBar = new CategoryBar($(".category-bar"), categoryBarController);
     const searchBar = new SearchBar($(".search-bar"), searchBarController);
   }
 }

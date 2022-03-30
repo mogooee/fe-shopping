@@ -24,7 +24,7 @@ export class CategoryBar extends Component {
             </div>`;
   }
 
-  getElement() {
+  setElement() {
     this.categoryBox = $(".category-box");
     this.categoryBoxBtn = $(".category-box button");
     this.categoryOptionBox = $(".category-option-box");

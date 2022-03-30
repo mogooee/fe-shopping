@@ -3,7 +3,7 @@ export class Component {
     this.target = target;
     this.controller = controller;
     this.render();
-    this.getElement();
+    this.setElement();
     this.bindController();
     this.setEvent();
   }

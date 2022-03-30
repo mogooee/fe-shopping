@@ -1,4 +1,4 @@
-export class CategoryBoxController {
+export class CategoryBarController {
   constructor(keywordStore) {
     this.keywordStore = keywordStore;
   }
