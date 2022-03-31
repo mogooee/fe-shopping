@@ -1,1 +1,16 @@
-{"version":3,"sourceRoot":"","sources":["../sass/base/_reset.scss","../sass/components/_searcher.scss","../sass/abstracts/_mixins.scss","../sass/abstracts/_variables.scss","../sass/components/_recent-search-box.scss","../sass/components/_auto-completion-box.scss","../sass/components/_category.scss","../sass/components/_search-helper-box.scss","../sass/layout/_header.scss"],"names":[],"mappings":"AAAA;EACE;EACA;EACA;;AACA;EACE;;;AAIJ;EACE;;;AAGF;EACE;;;ACbA;ECWA;EACA;EDVE;;AAGF;ECMA;EACA;EDLE;;AAEA;EACE;;AAIJ;EACE;EACA;EACA;EACE,cEnBC;EFqBH;;AAGF;EACE;EACA;EACA;;AACA;EACE;EACA;EACA;;AAGF;EACE;;AAGF;EACE,OEvCC;EFwCD;;AAEF;EACE;;;AG3CN;EACE;EACA;EACA;;AAEA;EFJA;EACA,cCDK;EDEL;EEIE;EACA;EACA;EACA;;AAEA;EAEI;EACA;EAEF;;AAGF;EACE;EACA;EACA;;AAEA;EACE;EACA;EACA;;AAEF;EACE;EACA;EACA;EACA;;AAGF;EACE,ODrCD;;AC0CL;EF1CA;EACA,cCDK;EDEL;EAIA;EACA;EEsCE;EACA;EACA;EACA;;AACA;EACE;EACA;;AAIJ;EFvDA;EACA,cCDK;EDEL;EAcA;EACA;EACA;EEwCE;EACA;EACA;;AACA;EACE;EACA;EACA;;;ACjEN;EHCE;EACA,cCDK;EDEL;EGDA;EACA;EACA;EACA;EACA,OFLK;;AEML;EACE;EACA;;AAEF;EACE;EACA;;;ACZF;EJMA;EACA;EILE;EACA;EACA;EACA;EACE;;AAGF;EACE;;AAGF;EACE;;AAIJ;EJlBA;EACA,cCDK;EDEL;EIkBE;EACA;EACA;EACA;EACA;EACA;EACA;;AAEA;EACE;;AACA;EACE;;;AChCR;EACE;;;ACDF;EACE;;;AAGF;EACE;EACA,OLNK;EKOL;;;AAGF;EACE;EACA;EACA","file":"style.css"}
+{
+  "version": 3,
+  "sourceRoot": "",
+  "sources": [
+    "../sass/base/_reset.scss",
+    "../sass/components/_search-bar.scss",
+    "../sass/abstracts/_variables.scss",
+    "../sass/abstracts/_mixins.scss",
+    "../sass/components/_category-bar.scss",
+    "../sass/components/_search-popup.scss",
+    "../sass/layout/_header-searchForm.scss"
+  ],
+  "names": [],
+  "mappings": "AAAA;EACE;EACA;EACA;;AACA;EACE;;;AAIJ;EACE;;;AAGF;EACE;;;ACdF;EACE;EACA;EACE,cCHG;;;ADQL;EACE;;AAGF;EACE;EACA;EACA;;AAGF;EACE;EACA;EACA;;AAEA;EACE;EACA;;AACA;EACE;;AAIJ;EACE;;AAGF;EACE,OCpCC;EDqCD;;;AAKN;EEzCE;EACA,cDDK;ECEL;EAIA;EACA;EFqCA;EACA;EACA;EACA;EACA;;AACA;EACE;EACA;;;AGnDF;EACE;EACA;;AAGF;EDCA;EACA;ECAE;EACA;EACA;EACE;;AAEF;EACE;;AAEF;EACE;;AAEF;EACE;;AAIJ;EDvBA;EACA,cDDK;ECEL;ECuBE;EACA;EACA;;AACA;EACE;;AACA;EACE;;AAGJ;EACE;;;ACpCN;EFCE;EACA,cDDK;ECEL;EEDA;EACA;EACA;;AACA;EACE;EACA;;AAEF;EACE;EACA;;;AAIJ;EACE;;AACA;EACE;;;AAKF;EACE;EACA;EACA;EACA;EAEE;EACA;;AAIJ;EACE;EFlBF;EACA;EACA;;AEkBE;EACE;;AAIJ;EACE;EACA;EACA;;AACA;EACE;EACA;;AAIJ;EACE,OHpDG;;;AIDP;EAEE;EACA;;;AAIA;EACE;;AACA;AAAA;EAEE;;;AAKN;EACE;;;AAGF;EACE;EACA,OJtBK;EIuBL;;;AAGF;EACE;EACA;EACA",
+  "file": "style.css"
+}

@@ -6,11 +6,9 @@
 @import "./abstracts/mixins";
 
 //componenets
-@import "./components/searcher";
-@import "./components/recent-search-box";
-@import "./components/auto-completion-box";
-@import "./components/category";
-@import "./components/search-helper-box";
+@import "./components/search-bar";
+@import "./components/category-bar";
+@import "./components/search-popup";
 
 //layout
-@import "./layout/header";
+@import "./layout/header-searchForm";

@@ -3,8 +3,8 @@ const router = express.Router();
 const keyword = require("../data/keyword.json");
 
 router.get("/", (req, res) => {
-  const inputKeyword = req.query.keyword;
-  const autoCompletionKeyword = keyword.filter((e) => e.keyword.includes(inputKeyword));
+  const searchKeyword = req.query.keyword;
+  const autoCompletionKeyword = keyword.filter((e) => e.keyword.includes(searchKeyword));
   res.json(autoCompletionKeyword);
 });
 

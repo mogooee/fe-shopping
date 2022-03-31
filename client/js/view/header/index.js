@@ -1,50 +1,43 @@
 import { $ } from "../../utils/utils.js";
-
 import { KeywordStore } from "../../model/KeywordStore.js";
-import { SearchBoxController } from "../../controller/SearchBoxController.js";
-import { SearchHelperController } from "../../controller/SearchHelperController.js";
-import { RecentSearchBoxController } from "../../controller/RecentSearchBoxController.js";
-import { CategoryBoxController } from "../../controller/CategoryBoxController.js";
-import { SearchBox } from "./SearchBox.js";
-import { RecentSearchBox } from "./RecentSearchBox.js";
-import { CategoryBox } from "./CategoryBox.js";
-import { CategoryOptionBox } from "./CategoryOptionBox.js";
-import { AutoCompletionBox } from "./AutoCompletionBox.js";
+import { CategoryBar } from "./CategoryBar.js";
+import { SearchBar } from "./SearchBar.js";
+import { CategoryBarController } from "../../controller/CategoryBarController.js";
+import { SearchBarController } from "../../controller/SearchBarController.js";
 
-export const Header = function () {
-  this.initModel();
-  this.initView();
-  this.initController();
-};
+export class Header {
+  constructor(target) {
+    this.target = target;
+  }
 
-Header.prototype.initModel = function () {
-  this.keywordStore = new KeywordStore();
-};
+  render() {
+    this.target.innerHTML = this.template();
+  }
 
-Header.prototype.initView = function () {
-  this.searchBox = new SearchBox($(".search-box"));
-  this.recentSearchBox = new RecentSearchBox($(".recent-search-box"));
-  this.categoryBox = new CategoryBox($(".category-box"));
-  this.categoryOptionBox = new CategoryOptionBox($(".category-option-box"));
-  this.autoCompletionBox = new AutoCompletionBox($(".auto-completion-box"));
-};
+  template() {
+    return `<div class="header-searchForm">
+              <h1 class="page-title">
+              <img
+               src="https://image7.coupangcdn.com/image/coupang/common/logo_coupang_w350.png"
+               alt="coupang-logo"
+              />
+              </h1>
+              <div class="search-banner">
+                <form class="search-form">
+                  <div class="category-bar"></div>
+                  <div class="search-bar"></div>
+                </form>
+              </div>
+            </div>`;
+  }
 
-Header.prototype.initController = function () {
-  this.searchBoxController = new SearchBoxController(
-    this.keywordStore,
-    this.recentSearchBox,
-    this.categoryOptionBox,
-    this.autoCompletionBox
-  );
-  this.recentSearchBoxController = new RecentSearchBoxController(this.keywordStore, this.recentSearchBox);
-  this.categoryBoxController = new CategoryBoxController(
-    this.keywordStore,
-    this.categoryBox,
-    this.categoryOptionBox
-  );
-  this.searchHelperBoxController = new SearchHelperController(
-    this.keywordStore,
-    this.searchBox,
-    this.categoryOptionBox
-  );
-};
+  mount() {
+    const keywordStore = new KeywordStore();
+
+    const categoryBarController = new CategoryBarController(keywordStore);
+    const searchBarController = new SearchBarController(keywordStore);
+
+    const categoryBar = new CategoryBar($(".category-bar"), categoryBarController);
+    const searchBar = new SearchBar($(".search-bar"), searchBarController);
+  }
+}

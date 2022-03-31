@@ -1,0 +1,31 @@
+.header-searchForm {
+  //@include center;
+  display: flex;
+  justify-content: center;
+}
+
+.search {
+  &-banner {
+    padding: 20px 0px;
+    h1,
+    img {
+      margin: 0;
+    }
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.selected {
+  cursor: pointer;
+  color: $blue;
+  text-decoration: underline;
+}
+
+.page-title img {
+  width: 174px;
+  height: 41px;
+  margin: 0px 20px 0px 0px;
+}
