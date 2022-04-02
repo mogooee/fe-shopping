@@ -1,0 +1,20 @@
+.icon-menus {
+  display: flex;
+}
+
+.my-coupang,
+.my-cart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 25px;
+
+  i {
+    font-size: 2.2em;
+    color: rgb(104, 104, 104);
+  }
+  span {
+    font-size: $basic-font-size;
+    padding-top: 10px;
+  }
+}

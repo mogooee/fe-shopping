@@ -1,0 +1,20 @@
+.top-bar {
+  background-color: #f0f0f0;
+  margin-bottom: -2px;
+}
+
+.top-bar__menu {
+  height: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-menu,
+.header-subscribe {
+  display: flex;
+  li {
+    font-size: 0.7em;
+    padding: 0px 10px;
+  }
+}

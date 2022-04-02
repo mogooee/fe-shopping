@@ -1,10 +1,15 @@
 import { Component } from "../../core/Component.js";
-import { $, $$, checkArrowUpDown } from "../../utils/utils.js";
-import { categoryOptions, downKey } from "../../constants/constants.js";
+import { $, $$, fetchData, checkArrowUpDown } from "../../utils/utils.js";
+import { downKey } from "../../constants/constants.js";
 
 export class CategoryBar extends Component {
   constructor(target, controller) {
     super(target, controller);
+  }
+
+  async fetch() {
+    const data = await fetchData("http://localhost:3000/option/category");
+    this.categoryOptions = data.map((e) => e.category);
   }
 
   template() {
@@ -15,7 +20,7 @@ export class CategoryBar extends Component {
             <div class="category-option-box hidden">
               <div class="category-option-box__contents">
                 <ul class="category-option-box__contents__list">
-                  ${categoryOptions.reduce(
+                  ${this.categoryOptions.reduce(
                     (acc, cur, index) => acc + `<li data-value="${cur}" data-index="${index}">${cur}</li>`,
                     ""
                   )}
@@ -24,7 +29,7 @@ export class CategoryBar extends Component {
             </div>`;
   }
 
-  setElement() {
+  getElement() {
     this.categoryBox = $(".category-box");
     this.categoryBoxBtn = $(".category-box button");
     this.categoryOptionBox = $(".category-option-box");

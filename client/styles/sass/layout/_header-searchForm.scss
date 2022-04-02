@@ -1,17 +1,12 @@
 .header-searchForm {
-  //@include center;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
-.search {
-  &-banner {
-    padding: 20px 0px;
-    h1,
-    img {
-      margin: 0;
-    }
-  }
+.top-bar__menu,
+.header-searchForm {
+  width: $basic-width;
+  margin: 0 auto;
 }
 
 .hidden {
@@ -22,10 +17,4 @@
   cursor: pointer;
   color: $blue;
   text-decoration: underline;
-}
-
-.page-title img {
-  width: 174px;
-  height: 41px;
-  margin: 0px 20px 0px 0px;
 }

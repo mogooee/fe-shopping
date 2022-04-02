@@ -24,7 +24,7 @@ export class SearchBar extends Component {
             </div>`;
   }
 
-  setElement() {
+  getElement() {
     this.searchForm = $(".search-form");
     this.searchBoxInput = $(".search-box__input");
     this.searchPopup = $(".search-popup");

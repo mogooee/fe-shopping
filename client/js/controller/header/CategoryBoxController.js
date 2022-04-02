@@ -1,4 +1,4 @@
-export class CategoryBarController {
+export class CategoryBoxController {
   constructor(keywordStore) {
     this.keywordStore = keywordStore;
   }
@@ -35,6 +35,7 @@ export class CategoryBarController {
     this.keywordStore.updateMouseFocusIndex(target.dataset.index, { AFTER_FN: this.focusCategory });
   }
 
+  //아직 안씀
   finishSelectingOption() {
     if (this.keywordStore.focusBox === "categoryBox") this.keywordStore.focusBox = "";
   }
