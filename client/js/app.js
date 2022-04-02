@@ -1,5 +1,6 @@
 import { $ } from "./utils/utils.js";
 import { Header } from "./view/header/index.js";
+import { Main } from "./view/main/index.js";
 
 const App = function (target) {
   this.target = target;
@@ -15,10 +16,13 @@ App.prototype.render = function () {
   this.target.innerHTML = this.template();
 };
 
-App.prototype.mount = function () {
+App.prototype.mount = async function () {
   const header = new Header($("header"));
-  header.render();
+  const main = new Main($(".main"));
+  await header.render();
+  await main.render();
   header.mount();
+  main.mount();
 };
 
 const app = new App($("#app"));
