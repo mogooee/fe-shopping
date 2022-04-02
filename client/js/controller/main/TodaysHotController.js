@@ -7,7 +7,9 @@ export class TodaysHotController {
   }
 
   async fetchCarouselData() {
-    this.todaysHotData = await fetchData("http://localhost:3000/list/todays-hot");
+    this.todaysHotData = await fetchData(
+      "https://raw.githubusercontent.com/mogooee/fe-shopping/step6/server/data/todays-hot.json"
+    );
     this.keywordStore.setCarouselData(this.todaysHotData);
     return this.todaysHotData;
   }

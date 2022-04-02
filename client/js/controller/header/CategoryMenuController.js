@@ -6,7 +6,9 @@ export class CategoryMenuController {
   }
 
   async fetchCategoryMenuData() {
-    this.categoryMenuData = await fetchData("http://localhost:3000/option/detail-category");
+    this.categoryMenuData = await fetchData(
+      "https://raw.githubusercontent.com/mogooee/fe-shopping/step6/server/data/category-detail-options.json"
+    );
     // this.keywordStore.setCategoryMenuData(this.categoryMenuData);
     return this.categoryMenuData;
   }

@@ -14,7 +14,9 @@ export class Header {
   }
 
   async fetch() {
-    const data = await fetchData("http://localhost:3000/list/sub-search");
+    const data = await fetchData(
+      "https://raw.githubusercontent.com/mogooee/fe-shopping/step6/server/data/sub-search-list.json"
+    );
     this.subSearchList = data.map((e) => e.title);
   }
 

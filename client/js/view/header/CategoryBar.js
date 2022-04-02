@@ -8,7 +8,9 @@ export class CategoryBar extends Component {
   }
 
   async fetch() {
-    const data = await fetchData("http://localhost:3000/option/category");
+    const data = await fetchData(
+      "https://raw.githubusercontent.com/mogooee/fe-shopping/step6/server/data/category-options.json"
+    );
     this.categoryOptions = data.map((e) => e.category);
   }
 
