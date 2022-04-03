@@ -1,14 +1,18 @@
-//base
-@import "./base/reset";
-
 //abstracts
 @import "./abstracts/variables";
 @import "./abstracts/mixins";
 
+//base
+@import "./base/reset";
+
 //componenets
-@import "./components/search-bar";
-@import "./components/category-bar";
-@import "./components/search-popup";
+@import "./components/header/top-bar";
+@import "./components/header/category-btn";
+@import "./components/header/category-bar";
+@import "./components/header/search-banner";
+@import "./components/header/search-popup";
+@import "./components/header/icon-menus";
+@import "./components/main/todays-hot";
 
 //layout
 @import "./layout/header-searchForm";

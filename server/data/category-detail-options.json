@@ -1,0 +1,448 @@
+[
+  {
+    "img": "https://image7.coupangcdn.com/image/displayitem/displayitem_8e8d405d-0065-49e2-84c9-02d212d875b2.jpg",
+    "category": "패션의류/잡화",
+    "subCategory": [
+      {
+        "category": "여성패션",
+        "subCategory": [
+          { "category": "의류" },
+          { "category": "속옷/잠옷" },
+          { "category": "신발" },
+          { "category": "가방/잡화" }
+        ]
+      },
+      {
+        "category": "남성패션",
+        "subCategory": [
+          { "category": "의류" },
+          { "category": "속옷/잠옷" },
+          { "category": "신발" },
+          { "category": "가방/잡화" }
+        ]
+      },
+      {
+        "category": "남녀 공용 의류",
+        "subCategory": [
+          { "category": "티셔츠" },
+          { "category": "맨투맨/후드티" },
+          { "category": "셔츠" },
+          { "category": "바지" },
+          { "category": "트레이닝복" },
+          { "category": "후드집업/집업류" },
+          { "category": "니트류/조끼" },
+          { "category": "아우터" },
+          { "category": "테마의류" },
+          { "category": "커플룩/패밀리룩" }
+        ]
+      },
+      {
+        "category": "유아동패션",
+        "subCategory": [{ "category": "베이비" }, { "category": "여아" }, { "category": "남아" }]
+      }
+    ]
+  },
+  {
+    "img": "https://image6.coupangcdn.com/image/displayitem/displayitem_200718fb-4027-48c7-a896-cb08e3164557.png",
+    "category": "뷰티",
+    "subCategory": [
+      { "category": "명품뷰티" },
+      {
+        "category": "스킨케어",
+        "subCategory": [
+          { "category": "스킨" },
+          { "category": "로션" },
+          { "category": "에센스/세럼/앰플" },
+          { "category": "미스트" },
+          { "category": "오일" },
+          { "category": "크림/올인원" },
+          { "category": "기초세트" },
+          { "category": "마스크/팩" },
+          { "category": "선케어/태닝" }
+        ]
+      },
+      {
+        "category": "클렌징/필링",
+        "subCategory": [
+          { "category": "클렌징 폼" },
+          { "category": "클렌징 젤/파우더" },
+          { "category": "클렌징 비누" },
+          { "category": "클렌징 오일" },
+          { "category": "클렌징 워터" },
+          { "category": "립/아이리무버" },
+          { "category": "클렌징 티슈/시트" },
+          { "category": "클렌징 로션/크림" },
+          { "category": "클렌징세트" },
+          { "category": "스크럽/필링" }
+        ]
+      },
+      { "category": "더마코스메틱" },
+      {
+        "category": "메이크업",
+        "subCategory": [
+          { "category": "아이 메이크업" },
+          { "category": "립 메이크업" },
+          { "category": "베이스 메이크업" },
+          { "category": "치크메이크업" },
+          { "category": "멀티메이크업" },
+          { "category": "바디메이크업" }
+        ]
+      },
+      {
+        "category": "향수",
+        "subCategory": [
+          { "category": "여성 향수" },
+          { "category": "남성 향수" },
+          { "category": "드레스 퍼퓸" }
+        ]
+      },
+      {
+        "category": "남성화장품",
+        "subCategory": [
+          { "category": "남성스킨케어" },
+          { "category": "남성메이크업" },
+          { "category": "남성화장품세트" },
+          { "category": "남성 헤어케어" },
+          { "category": "남성 바디케어" },
+          { "category": "남성 쉐이빙 케어" }
+        ]
+      },
+      {
+        "category": "네일",
+        "subCategory": [
+          { "category": "네일팁/스티커" },
+          { "category": "일반네일" },
+          { "category": "젤네일" },
+          { "category": "큐티클/영양" },
+          { "category": "네일케어도구" },
+          { "category": "네일아트소품/도구" },
+          { "category": "네일세트" }
+        ]
+      },
+      {
+        "category": "뷰티소품",
+        "subCategory": [
+          { "category": "화장솜/면봉" },
+          { "category": "아이소품" },
+          { "category": "페이스소품" },
+          { "category": "클렌징소품" },
+          { "category": "헤어소품" },
+          { "category": "피부관리기" },
+          { "category": "용기/거울/기타소품" }
+        ]
+      },
+      {
+        "category": "어린이화장품",
+        "subCategory": [
+          { "category": "메이크업" },
+          { "category": "향수" },
+          { "category": "네일케어" },
+          { "category": "세트/키트" }
+        ]
+      },
+      {
+        "category": "로드샵"
+      },
+      {
+        "category": "헤어",
+        "subCategory": [
+          { "category": "샴푸" },
+          { "category": "린스/컨디셔너" },
+          { "category": "트리트먼트/팩/앰플" },
+          { "category": "헤어에센스/오일" },
+          { "category": "헤어스타일링" },
+          { "category": "헤어세트" },
+          { "category": "염색/파마" }
+        ]
+      },
+      {
+        "category": "바디",
+        "subCategory": [
+          { "category": "샤워/입욕용품" },
+          { "category": "바디로션/크림" },
+          { "category": "핸드/풋/데오" },
+          { "category": "제모/슬리밍/청결제" }
+        ]
+      },
+      {
+        "category": "선물세트/키트",
+        "subCategory": [
+          { "category": "선물세트" },
+          { "category": "여행용키트" },
+          { "category": "남성화장품세트" },
+          { "category": "남성 헤어케어" },
+          { "category": "남성 바디케어" },
+          { "category": "남성 쉐이빙 케어" }
+        ]
+      }
+    ]
+  },
+  {
+    "img": "https://image9.coupangcdn.com/image/displayitem/displayitem_2e4776e3-73b2-416e-bee8-5e59548584d2.jpg",
+    "category": "출산/유아동",
+    "subCategory": [
+      { "category": "베이비패션" },
+      { "category": "여아키즈패션" },
+      { "category": "남아키즈패션" },
+      { "category": "기저귀" },
+      { "category": "물티슈" },
+      { "category": "분유/어린이식품" },
+      { "category": "수유용품" },
+      { "category": "이유용품/유아식기" },
+      { "category": "유모차/웨건" },
+      { "category": "카시트" },
+      { "category": "아기띠/외출용품" },
+      { "category": "유아동침구" },
+      { "category": "매트/안전용품" },
+      { "category": "유아가구/인테리어" },
+      { "category": "욕실용품/스킨케어" },
+      { "category": "위생/건강/세제" }
+    ]
+  },
+  {
+    "img": "https://image7.coupangcdn.com/image/displayitem/displayitem_96ace47f-0079-4436-9cf0-25a43ac75517.jpg",
+    "category": "식품",
+    "subCategory": [
+      { "category": "유기농/친환경 전문관" },
+      { "category": "과일" },
+      { "category": "견과/건과" },
+      { "category": "채소" },
+      { "category": "쌀/잡곡" },
+      { "category": "축산/계란" },
+      { "category": "수산물/건어물" },
+      { "category": "생수/음료" },
+      { "category": "커피/원두/차" },
+      { "category": "과자/초콜릿/시리얼" },
+      { "category": "면/통조림/가공식품" },
+      { "category": "가루/조미료/오일" },
+      { "category": "장/소스/드레싱/식초" },
+      { "category": "유제품/아이스크림" },
+      { "category": "냉장/냉동/간편요리" },
+      { "category": "건강식품" }
+    ]
+  },
+  {
+    "img": "https://image6.coupangcdn.com/image/displayitem/displayitem_41e6f550-2b22-4af9-8ee0-48d8a43c6a64.jpg",
+    "category": "주방용품",
+    "subCategory": [
+      { "category": "주방가전" },
+      { "category": "냄비/프라이팬" },
+      { "category": "칼/도마" },
+      { "category": "주방조리도구" },
+      { "category": "그릇/홈세트" },
+      { "category": "수저/커트러리" },
+      { "category": "컵/잔/텀블러" },
+      { "category": "커피/티/와인" },
+      { "category": "주방수납/정리" },
+      { "category": "밀폐저장/도시락" },
+      { "category": "주방잡화" },
+      { "category": "일회용품/종이컵" },
+      { "category": "보온/보냉용품" },
+      { "category": "이유/유아식기" },
+      { "category": "베이킹용품" },
+      { "category": "교자상/제수용품" }
+    ]
+  },
+  {
+    "img": "https://image10.coupangcdn.com/image/displayitem/displayitem_411fecca-6524-494b-9dc1-94654644bb12.jpg",
+    "category": "생활용품",
+    "subCategory": [
+      { "category": "헤어/바디/세안" },
+      { "category": "구강/면도" },
+      { "category": "화장지/물티슈" },
+      { "category": "생리대/성인기저귀" },
+      { "category": "기저귀" },
+      { "category": "세탁세제" },
+      { "category": "청소/주방세제" },
+      { "category": "탈취/방향/살충" },
+      { "category": "건강/의료용품" },
+      { "category": "성인용품(19)" },
+      { "category": "세탁/청소용품" },
+      { "category": "욕실용품" },
+      { "category": "생활전기용품" },
+      { "category": "수납/정리" },
+      { "category": "주방수납/잡화" },
+      { "category": "생활잡화" }
+    ]
+  },
+  {
+    "img": "https://image6.coupangcdn.com/image/displayitem/displayitem_29258120-0af0-4891-a5de-3d6c5f0d30de.jpg",
+    "category": "홈인테리어",
+    "subCategory": [
+      { "category": "봄침구샵" },
+      { "category": "싱글하우스" },
+      { "category": "홈데코" },
+      { "category": "가구" },
+      { "category": "수납/정리" },
+      { "category": "침구" },
+      { "category": "커튼/블라인드" },
+      { "category": "카페트/쿠션/거실화" },
+      { "category": "수예/수선" },
+      { "category": "욕실용품" },
+      { "category": "조명/스탠드" },
+      { "category": "셀프인테리어" },
+      { "category": "원예/가드닝" }
+    ]
+  },
+  {
+    "img": "https://image6.coupangcdn.com/image/displayitem/displayitem_248e20ee-5bc9-4381-adb7-5d912b6e2487.png",
+    "category": "가전디지털",
+    "subCategory": [
+      { "category": "TV/영상가전" },
+      { "category": "냉장고" },
+      { "category": "세탁기/건조기" },
+      { "category": "생활가전" },
+      { "category": "청소기" },
+      { "category": "계절가전" },
+      { "category": "이미용가전" },
+      { "category": "건강가전" },
+      { "category": "주방가전" },
+      { "category": "노트북" },
+      { "category": "데스크탑" },
+      { "category": "모니터" },
+      { "category": "키보드/마우스" },
+      { "category": "저장장치" },
+      { "category": "PC부품" }
+    ]
+  },
+  {
+    "img": "https://image7.coupangcdn.com/image/displayitem/displayitem_482303d8-85f0-4ea1-9d36-57a2704f20ba.jpg",
+    "category": "스포츠/레저",
+    "subCategory": [
+      { "category": "캠핑전문관" },
+      { "category": "홈트레이닝" },
+      { "category": "수영/수상스포츠" },
+      { "category": "골프" },
+      { "category": "자전거" },
+      { "category": "킥보드/스케이트" },
+      { "category": "낚시" },
+      { "category": "등산/아웃도어" },
+      { "category": "스포츠신발" },
+      { "category": "남성스포츠의류" },
+      { "category": "여성스포츠의류" },
+      { "category": "유아스포츠의류" },
+      { "category": "스포츠잡화" },
+      { "category": "구기스포츠" },
+      { "category": "라켓스포츠" },
+      { "category": "헬스/요가/댄스" }
+    ]
+  },
+  {
+    "img": "https://image7.coupangcdn.com/image/displayitem/displayitem_ecab18ca-217c-4619-9a9b-7109c53d3a07.jpg",
+    "category": "자동차용품",
+    "subCategory": [
+      { "category": "인테리어" },
+      { "category": "익스테리어" },
+      { "category": "세차/카케어" },
+      { "category": "차량용 전자기기" },
+      { "category": "차량관리/소모품" },
+      { "category": "RV/아웃도어" },
+      { "category": "부품/안전/공구" },
+      { "category": "오토바이/전동킥보드" },
+      { "category": "로켓설치 타이어" }
+    ]
+  },
+  {
+    "img": "https://image8.coupangcdn.com/image/displayitem/displayitem_713a5242-a57c-41e4-be0c-6103a8125ac6.jpg",
+    "category": "도서/음반/DVD",
+    "subCategory": [
+      { "category": "유아/어린이" },
+      { "category": "소설/에세이/시" },
+      { "category": "초중고참고서" },
+      { "category": "가정 살림" },
+      { "category": "건강 취미" },
+      { "category": "경제 경영" },
+      { "category": "과학/공학" },
+      { "category": "국어/외국어/사전" },
+      { "category": "대학교재" },
+      { "category": "만화/라이트노벨" },
+      { "category": "사회 정치" },
+      { "category": "수험서/자격증" },
+      { "category": "여행" },
+      { "category": "역사" },
+      { "category": "예술" },
+      { "category": "인문" }
+    ]
+  },
+  {
+    "img": "https://image10.coupangcdn.com/image/displayitem/displayitem_5c2eaa30-b050-48be-a218-6b15e9daa98b.jpg",
+    "category": "완구/취미",
+    "subCategory": [
+      { "category": "캐릭터별완구" },
+      { "category": "신생아/영아완구" },
+      { "category": "로봇/작동완구" },
+      { "category": "역할놀이" },
+      { "category": "블록놀이" },
+      { "category": "인형" },
+      { "category": "물놀이/계절완구" },
+      { "category": "승용완구" },
+      { "category": "스포츠/야외완구" },
+      { "category": "실내대형완구" },
+      { "category": "STEAM완구" },
+      { "category": "학습완구/교구" },
+      { "category": "보드게임" },
+      { "category": "RC완구/부품" },
+      { "category": "퍼즐/큐브/피젯토이" },
+      { "category": "프라모델" }
+    ]
+  },
+  {
+    "img": "https://image7.coupangcdn.com/image/displayitem/displayitem_97762dd0-95f0-4fee-b3da-03dd3c9952b9.jpg",
+    "category": "문구/오피스",
+    "subCategory": [
+      { "category": "사무용품 전문관" },
+      { "category": "미술/화방용품" },
+      { "category": "캐릭터 문구" },
+      { "category": "학용품/수업준비" },
+      { "category": "필기류" },
+      { "category": "노트/메모지" },
+      { "category": "다이어리/플래너" },
+      { "category": "바인더/파일" },
+      { "category": "파티/이벤트" },
+      { "category": "데코/포장용품" },
+      { "category": "카드/엽서/봉투" },
+      { "category": "앨범" },
+      { "category": "복사용품/라벨지" },
+      { "category": "보드/칠판/광고" }
+    ]
+  },
+  {
+    "img": "https://image10.coupangcdn.com/image/displayitem/displayitem_e86aff1a-9e8e-4a64-a5cf-001f2dadec30.jpg",
+    "category": "반려동물용품",
+    "subCategory": [
+      { "category": "강아지 사료" },
+      { "category": "강아지 간식" },
+      { "category": "강아지 영양제" },
+      { "category": "강아지 용품" },
+      { "category": "고양이 사료" },
+      { "category": "고양이 간식" },
+      { "category": "고양이 영양제" },
+      { "category": "고양이 용품" },
+      { "category": "펫티켓 산책용품" },
+      { "category": "관상어 용품" },
+      { "category": "소동물/가축용품" }
+    ]
+  },
+  {
+    "img": "https://image10.coupangcdn.com/image/displayitem/displayitem_595e990e-a619-4b1c-8b89-d3fbc0fd981a.jpg",
+    "category": "헬스/건강식품",
+    "subCategory": [
+      { "category": "건강기능식품" },
+      { "category": "성인용 건강식품" },
+      { "category": "여성용 건강식품" },
+      { "category": "남성용 건강식품" },
+      { "category": "임산부 건강식품" },
+      { "category": "시니어 건강식품" },
+      { "category": "어린이 건강식품" },
+      { "category": "비타민/미네랄" },
+      { "category": "영양제" },
+      { "category": "허브/식물추출물" },
+      { "category": "홍삼/인삼" },
+      { "category": "건강즙/음료" },
+      { "category": "꿀/프로폴리스" },
+      { "category": "건강분말/건강환" },
+      { "category": "헬스보충식품" },
+      { "category": "다이어트/이너뷰티" }
+    ]
+  }
+]

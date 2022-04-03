@@ -21,3 +21,16 @@ export const fetchData = async (URL) => {
   const data = await response.json();
   return data;
 };
+export const debouncing = (callback, delay) => {
+  let timerId;
+  return (event) => {
+    if (timerId) clearTimeout(timerId);
+    timerId = setTimeout(
+      () => {
+        callback(event);
+      },
+      delay,
+      event
+    );
+  };
+};
