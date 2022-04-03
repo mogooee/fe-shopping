@@ -46,6 +46,7 @@ export class KeywordStore {
   }
 
   saveRecentKeyword(keyword, { AFTER_FN }) {
+    this.focusBox = "recent-search";
     this.addRecentKeyword(keyword);
     this.saveLocalStorage();
     if (AFTER_FN) AFTER_FN(this.recentKeywordArr);

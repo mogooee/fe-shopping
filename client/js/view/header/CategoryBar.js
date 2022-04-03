@@ -51,8 +51,11 @@ export class CategoryBar extends Component {
 
   setEvent() {
     document.addEventListener("click", ({ target }) => {
-      if (target.closest(".category-bar")) return;
-      this.controller.outFocusCategoryBox();
+      if (!target.closest(".category-bar")) {
+        this.hideCategoryOption();
+        if (!target.closest(".search-bar") && !target.closest(".delete-btn"))
+          this.controller.outFocusCategoryBox();
+      }
     });
 
     this.categoryBox.addEventListener("click", () => {

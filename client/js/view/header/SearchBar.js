@@ -48,8 +48,10 @@ export class SearchBar extends Component {
 
   setEvent() {
     document.addEventListener("click", ({ target }) => {
-      if (target.closest(".search-bar") || target.closest(".delete-btn")) return;
-      this.controller.outFocusSearchBox();
+      if (!target.closest(".search-bar") && !target.closest(".delete-btn")) {
+        this.hideSearchPopup();
+        if (!target.closest(".category-bar")) this.controller.outFocusSearchBox();
+      }
     });
 
     this.searchForm.addEventListener("submit", (e) => {

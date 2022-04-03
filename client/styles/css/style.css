@@ -180,7 +180,7 @@ ul {
   border-color: #4285f4;
 }
 .search-banner {
-  min-width: 522px;
+  width: 522px;
   padding: 20px 0px 0px 0px;
 }
 .search-banner h1,

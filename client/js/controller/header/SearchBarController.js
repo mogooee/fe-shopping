@@ -13,7 +13,7 @@ export class SearchBarController {
   }
 
   outFocusSearchBox() {
-    this.hideSearchPopup();
+    this.keywordStore.focusBox = "";
   }
 
   searchProduct(searchKeyword) {

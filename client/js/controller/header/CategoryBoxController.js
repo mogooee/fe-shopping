@@ -4,7 +4,7 @@ export class CategoryBoxController {
   }
 
   outFocusCategoryBox() {
-    this.hideCategoryOption();
+    this.keywordStore.focusBox = "";
   }
 
   toggleOptionBox() {
