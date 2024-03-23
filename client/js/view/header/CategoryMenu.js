@@ -1,9 +1,16 @@
 import { Component } from "../../core/Component.js";
-import { $ } from "../../utils/utils.js";
+import { $, debouncing } from "../../utils/utils.js";
 
 export class CategoryMenu extends Component {
+  #pos;
+
   constructor(target, controller) {
     super(target, controller);
+    this.#pos = {
+      dot1: { x: 0, y: 0 },
+      dot2: { x: 0, y: 0 },
+      dot3: { x: 0, y: 0 },
+    };
   }
 
   async fetch() {
@@ -24,7 +31,7 @@ export class CategoryMenu extends Component {
               )}</ul>
               <ul class="two-depth hidden"></ul>
               <ul class="third-depth hidden"></ul>
-              </div>
+            </div>
             `;
   }
 
@@ -40,11 +47,74 @@ export class CategoryMenu extends Component {
     this.controller.renderSubMenu = this.renderSubMenu.bind(this);
   }
 
+  getAreaOfTriangle(dot1, dot2, dot3) {
+    const l = dot1.x * dot2.y + dot2.x * dot3.y + dot3.x * dot1.y;
+    const r = dot2.x * dot1.y + dot3.x * dot2.y + dot1.x * dot3.y;
+    return 0.5 * Math.abs(l - r);
+  }
+
+  checkTriangleInPoint(dot1Pos, dot2Pos, dot3Pos, checkPos) {
+    const basicArea = this.getAreaOfTriangle(dot1Pos, dot2Pos, dot3Pos);
+    const dot12 = this.getAreaOfTriangle(dot1Pos, dot2Pos, checkPos);
+    const dot13 = this.getAreaOfTriangle(dot1Pos, dot3Pos, checkPos);
+    const dot23 = this.getAreaOfTriangle(dot2Pos, dot3Pos, checkPos);
+
+    // 좌표가 설정되지 않은 초기상태
+    if (basicArea === 0) return false;
+    return dot12 + dot13 + dot23 <= basicArea;
+  }
+
+  setTrianglePos({ target }) {
+    const nextDepth = target.closest("ul").nextElementSibling;
+    if (!nextDepth?.clientWidth) return;
+    const { top, bottom, left } = target.getBoundingClientRect();
+    const dot1 = { x: left, y: top + (bottom - top) / 2 };
+    const dot2 = {
+      x: nextDepth.getBoundingClientRect().left,
+      y: Array.from(nextDepth.children)[0].getBoundingClientRect().top,
+    };
+    const dot3 = {
+      x: nextDepth.getBoundingClientRect().left,
+      y: Array.from(nextDepth.children).at(-1).getBoundingClientRect().bottom,
+    };
+
+    this.#pos = { dot1, dot2, dot3 };
+    this.controller.dropSubMenu(target.innerText);
+  }
+
+  dropSubMenu({ target, clientX, clientY }) {
+    const mousePos = { x: clientX, y: clientY };
+    if (
+      !this.checkTriangleInPoint(
+        this.#pos.dot1,
+        this.#pos.dot2,
+        this.#pos.dot3,
+        mousePos
+      )
+    ) {
+      this.controller.dropSubMenu(target.innerText);
+    }
+  }
+
   setEvent() {
-    this.categoryBtn.addEventListener("mouseover", ({ target }) => {
-      if (target.closest(".category-btn")) this.categoryMenu.classList.remove("hidden");
-      target.tagName === "LI" && this.controller.dropSubMenu(target.innerText);
-    });
+    const DIAGNOL_MOVEMENT_DELAY = 100;
+    const setPos = debouncing(
+      this.setTrianglePos.bind(this),
+      DIAGNOL_MOVEMENT_DELAY
+    );
+
+    this.categoryBtn.addEventListener(
+      "mouseover",
+      ({ target, clientX, clientY }) => {
+        if (target.closest(".category-btn")) {
+          this.categoryMenu.classList.remove("hidden");
+        }
+        if (target.tagName === "LI") {
+          setPos({ target, clientX, clientY });
+          this.dropSubMenu({ target, clientX, clientY });
+        }
+      }
+    );
 
     this.categoryBtn.addEventListener("mouseleave", ({ target }) => {
       target.closest(".category-btn") && this.focusOutCategoryMenu();
